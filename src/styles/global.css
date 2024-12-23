@@ -9,8 +9,8 @@
 }
 .cenario {
   display: flex; 
-  justify-content: center; 
-  align-items: center; 
+  justify-content: center;
+  align-items: center;
   width: 1000px;
   height: 632px;
   border: 1px solid red;
@@ -28,37 +28,59 @@
   width: 700px;
   right: 240px;
   top: -150px;
+  z-index: 1;
 
 }
 
+.nave{
+  position: absolute;
+  margin: 0;
+  
+  top: 77px;
+  left: 200px;
+  width: 1400px;
+  right: 0;
+  z-index: 2;
+}
 
-.itens{
+.space{
+  position: absolute;
+  align-items: center;
+  width: 320px;
+  z-index: 3;
+  top: 20%;
+  z-index: 3;
+}
+
+.it{
   position: absolute;
   display: flex;
   flex-direction: column;
   align-items: center;
-  margin-top: 32%;
+  margin-top: 36%;
+  z-index: 2;
 }
 
-.itens a {
+.it a {
   display: block;
   font-family: "Pixelify Sans", serif;
   margin-bottom: 20px; 
   border-radius: 20px; 
   width: 200px;
-  background-color: #D9D9D9; 
+  background:linear-gradient(to bottom,  #2b8fbb ,#1a5e85  ) ;
   padding: 15px 0; 
-  border: 6px solid #7C7B7B; 
+  border: 6px solid #B8E5EB; 
   text-align: center;
   text-decoration: none;
   font-size: 30px; 
-  color: black; 
+  font-weight: bold;
+  color:#ffff; 
   box-shadow: 3px 3px 5px rgba(0, 0, 0, 0.5); 
   transition: transform 0.2s; 
   
 }
 
-.itens a:hover {
+.it a:hover {
   transform: scale(1.05);
 }
 
