@@ -4,8 +4,8 @@
     <img src="/src/static/nave.png" alt="" class = "nave">
     <div class="it ">
 
-        <a href="/jogar" id= "jogar">jogar</a>
-        <a href="/jogar" id= "sobre">sobre</a>
+        <a href="/jogar" id= "play">play</a>
+        <a href="/jogar" id= "about">about</a>
     </div>
 
 

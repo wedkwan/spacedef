@@ -46,7 +46,7 @@
 .space{
   position: absolute;
   align-items: center;
-  width: 320px;
+  width: 360px;
   z-index: 3;
   top: 20%;
   z-index: 3;
@@ -72,7 +72,7 @@
   border: 6px solid #B8E5EB; 
   text-align: center;
   text-decoration: none;
-  font-size: 30px; 
+  font-size: 34px; 
   font-weight: bold;
   color:#ffff; 
   box-shadow: 3px 3px 5px rgba(0, 0, 0, 0.5); 
