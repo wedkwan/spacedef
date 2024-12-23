@@ -1,0 +1,65 @@
+@import url('https://fonts.googleapis.com/css2?family=Pixelify+Sans:wght@400..700&display=swap');
+
+*{
+  margin: 0;
+  padding: 0;
+  
+  
+
+}
+.cenario {
+  display: flex; 
+  justify-content: center; 
+  align-items: center; 
+  width: 1000px;
+  height: 632px;
+  border: 1px solid red;
+  margin: 40px auto;
+  position: relative;
+  overflow: hidden;
+  background-image: url(/src/static/fundo.png);
+  background-color: black;
+  background-repeat: no-repeat;
+  background-size: cover; 
+
+}
+.jupt{
+  position: relative;
+  width: 700px;
+  right: 240px;
+  top: -150px;
+
+}
+
+
+.itens{
+  position: absolute;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 32%;
+}
+
+.itens a {
+  display: block;
+  font-family: "Pixelify Sans", serif;
+  margin-bottom: 20px; 
+  border-radius: 20px; 
+  width: 200px;
+  background-color: #D9D9D9; 
+  padding: 15px 0; 
+  border: 6px solid #7C7B7B; 
+  text-align: center;
+  text-decoration: none;
+  font-size: 30px; 
+  color: black; 
+  box-shadow: 3px 3px 5px rgba(0, 0, 0, 0.5); 
+  transition: transform 0.2s; 
+  
+}
+
+.itens a:hover {
+  transform: scale(1.05);
+}
+
+
