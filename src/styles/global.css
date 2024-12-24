@@ -17,11 +17,20 @@
   margin: 40px auto;
   position: relative;
   overflow: hidden;
-  background-image: url(/src/static/fundo.png);
+  background-image: url(/src/static/fundo.gif);
   background-color: black;
-  background-repeat: no-repeat;
-  background-size: cover; 
+  background-repeat: repeat-y;
+  background-size: 100% auto; 
+  animation: moveStars 8s linear infinite;
 
+}
+@keyframes moveStars {
+  from {
+    background-position: 0 0; /* Posição inicial */
+  }
+  to {
+    background-position: 0 100%; /* Move o fundo para baixo */
+  }
 }
 .jupt{
   position: relative;
@@ -37,8 +46,8 @@
   margin: 0;
   
   top: 77px;
-  left: 200px;
-  width: 1400px;
+  left: 523px;
+  width: 670px;
   right: 0;
   z-index: 2;
 }
@@ -46,10 +55,10 @@
 .space{
   position: absolute;
   align-items: center;
-  width: 360px;
+  width: 370px;
   z-index: 3;
   top: 20%;
-  z-index: 3;
+  z-index: 2;
 }
 
 .it{
