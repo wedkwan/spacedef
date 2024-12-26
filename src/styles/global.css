@@ -21,10 +21,10 @@
   background-color: black;
   background-repeat: repeat-y;
   background-size: 100% auto; 
-  animation: moveStars 8s linear infinite;
+  animation: estrelas 8s linear infinite;
 
 }
-@keyframes moveStars {
+@keyframes estrelas {
   from {
     background-position: 0 0; /* Posição inicial */
   }
