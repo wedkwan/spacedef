@@ -1,19 +1,19 @@
-<script>
+<script lang="ts">
   import { onMount } from "svelte";
 
-  let nave; // Referência à nave
-  let posicaoX = 0; // Posição inicial da nave no eixo X
-  let posicaoY = 0; // Posição inicial da nave no eixo Y
+  let nave: number = 0; // Referência ao elemento da nave
+  let posicaoX: number = 0; // Posição inicial da nave no eixo X
+  let posicaoY: number = 0; // Posição inicial da nave no eixo Y
 
-  const larguraCenario = 1000; // Largura do cenário
-  const alturaCenario  = 632; // Altura do cenário
-  const larguraNave = 670; // Largura da nave
-  const alturaNave = 100; // Altura estimada da nave
+  let larguraCenario: number = 1000; // Largura do cenário
+  let alturaCenario: number = 632; // Altura do cenário
+  let larguraNave: number = 670; // Largura da nave
+  let alturaNave: number = 100; // Altura estimada da nave
 
-  const velocidade = 10; // Velocidade de movimento da nave
+  const velocidade: number = 10; // Velocidade de movimento da nave
 
   // Lógica de movimentação
-  const movimentarNave = (event) => {
+  const movimentarNave = (event: KeyboardEvent): void => {
     if (event.key === "ArrowLeft" || event.key === "a") {
       // Mover para a esquerda
       posicaoX = Math.max(posicaoX - velocidade, 0);
@@ -36,15 +36,15 @@
   };
 
   // Adiciona o evento de teclado ao montar o componente
-  onMount(() => {
+  onMount((): (() => void) => {
     window.addEventListener("keydown", movimentarNave);
 
-    return () => {
+    return (): void => {
       window.removeEventListener("keydown", movimentarNave);
     };
   });
-</script>
 
+</script>
   
   <div class="cenario">
     <img bind:this={nave} src="/src/static/nave4.gif" alt="" class="nave" style="left: 0;">
