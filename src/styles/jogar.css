@@ -1,0 +1,33 @@
+.tela {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 1000px;
+    height: 632px;
+    margin: 40px auto;
+    position: relative;
+    overflow: hidden;
+    background-image: url(/src/static/fundo.gif);
+    background-color: black;
+    background-repeat: repeat-y;
+    background-size: 100% auto;
+    animation: estrelas 8s linear infinite;
+}
+@keyframes estrelas {
+    from {
+      background-position: 0 0;
+    }
+    to {
+      background-position: 0 100%;
+    }
+  }
+
+  
+.nav {
+    position: absolute;
+    margin: 0;
+    top: 77px;
+    left: 0;
+    width: 1060px;
+    z-index: 2;
+  }
