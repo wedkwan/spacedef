@@ -6,7 +6,7 @@
   let posicaoY = 0; // Posição inicial da nave no eixo Y
 
   const larguraCenario = 1000; // Largura do cenário
-  const alturaCenario = 632; // Altura do cenário
+  const alturaCenario  = 632; // Altura do cenário
   const larguraNave = 670; // Largura da nave
   const alturaNave = 100; // Altura estimada da nave
 
