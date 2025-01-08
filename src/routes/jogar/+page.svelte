@@ -46,64 +46,9 @@
 
 </script>
   
-  <div class="cenario">
-    <img bind:this={nave} src="/src/static/nave4.gif" alt="" class="nave" style="left: 0;">
+  <div class="tela">
+    <img bind:this={nave} src="/src/static/nave.png" alt="" class="nav" style="left: 0;">
+    
   </div>
-  
-  <style>
-    @import url('https://fonts.googleapis.com/css2?family=Pixelify+Sans:wght@400..700&display=swap');
-  
-    * {
-      margin: 0;
-      padding: 0;
-    }
-  
-    .cenario {
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      width: 1000px;
-      height: 632px;
-      border: 1px solid red;
-      margin: 40px auto;
-      position: relative;
-      overflow: hidden;
-      background-image: url(/src/static/fundo.gif);
-      background-color: black;
-      background-repeat: repeat-y;
-      background-size: 100% auto;
-      animation: estrelas 8s linear infinite;
-    }
-  
-    @keyframes estrelas {
-      from {
-        background-position: 0 0;
-      }
-      to {
-        background-position: 0 100%;
-      }
-    }
-  
-   
-  
-    .nave {
-      position: absolute;
-      margin: 0;
-      top: 77px;
-      left: 0;
-      width: 670px;
-      z-index: 2;
-    }
-  
-    .space {
-      position: absolute;
-      align-items: center;
-      width: 370px;
-      z-index: 3;
-      top: 20%;
-      z-index: 2;
-    }
-  
-   
-  </style>
+
   
