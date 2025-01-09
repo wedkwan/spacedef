@@ -1,13 +1,15 @@
 <script lang="ts">
   import { onMount } from "svelte";
-  let nave: number = 0; // Referência ao elemento da nave
+
+  let nave: HTMLElement | null = null; // Referência ao elemento da nave
   let posicaoX: number = 0; // Posição inicial da nave no eixo X
   let posicaoY: number = 0; // Posição inicial da nave no eixo Y
   let larguraCenario: number = 1000; // Largura do cenário
   let alturaCenario: number = 632; // Altura do cenário
-  let larguraNave: number = 670; // Largura da nave
+  let larguraNave: number = 100; // Largura da nave ajustada
   let alturaNave: number = 100; // Altura estimada da nave
-  const velocidade: number = 10; // Velocidade de movimento da nave
+  const velocidade: number = 13; // Velocidade de movimento da nave
+
   // Lógica de movimentação
   const movimentarNave = (event: KeyboardEvent): void => {
     if (event.key === "ArrowLeft" || event.key === "a") {
@@ -23,27 +25,30 @@
       // Mover para baixo
       posicaoY = Math.min(posicaoY + velocidade, alturaCenario - alturaNave);
     }
-    // Atualiza a posição da nave no estilo inline
+    // Atualiza a posição da nave
     if (nave) {
-      nave.style.left = `${posicaoX}px`;
-      nave.style.top = `${posicaoY}px`;
+      nave.style.transform = `translate(${posicaoX}px, ${posicaoY}px)`;
     }
   };
-  // Adiciona o evento de teclado ao montar o componente
-  onMount((): (() => void) => {
-    window.addEventListener("keydown", movimentarNave);
-    return (): void => {
-      window.removeEventListener("keydown", movimentarNave);
+
+  let tela: HTMLElement | null = null; // Referência ao elemento da tela
+
+  // Adiciona o evento de teclado ao montar o componente na tela específica
+  onMount(() => {
+    const handleKeydown = (event: KeyboardEvent) => movimentarNave(event);
+
+    tela?.addEventListener("keydown", handleKeydown);
+
+    return () => {
+      tela?.removeEventListener("keydown", handleKeydown);
     };
   });
 </script>
 
-  
- <div class="tela">
-    <img bind:this={nave} src="/src/static/navep1.gif" alt="" class="nav" style="left: 0;">
-    <div class = "enemy">
-      <img src="/src/static/enemy2.gif" alt="inimigos " class ="enemy1">
-      <img src="/src/static/enemy3.gif" alt="inimigos " class ="enemy3">
-    </div>
+<div bind:this={tela} class="tela" tabindex="0">
+  <img bind:this={nave} src="/src/static/navep1.gif" alt="Nave" class="nav" style="transform: translate(0, 0);">
+  <div class="enemy">
+    <img src="/src/static/enemy2.gif" alt="inimigo" class="enemy1">
+    <img src="/src/static/enemy3.gif" alt="inimigo" class="enemy3">
+  </div>
 </div>
-
