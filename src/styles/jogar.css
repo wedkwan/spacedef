@@ -1,7 +1,5 @@
 .tela {
     display: flex;
-    justify-content: center;
-    align-items: center;
     width: 1000px;
     height: 632px;
     margin: 40px auto;
@@ -20,14 +18,26 @@
     to {
       background-position: 0 100%;
     }
-  }
+}
+.enemy1{
+  position: absolute;
+  width:150px ;
+  top: 77px;
+  right: 50px;
 
+}
+
+.enemy3{
+  position: absolute;
+  width: 150px;
+  
+}
   
 .nav {
     position: absolute;
     margin: 0;
-    top: 77px;
+    top: 0;
     left: 0;
-    width: 1060px;
+    width: 100px;
     z-index: 2;
   }

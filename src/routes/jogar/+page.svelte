@@ -40,7 +40,10 @@
 
   
  <div class="tela">
-    <img bind:this={nave} src="/src/static/nave.png" alt="" class="nav" style="left: 0;">
-    
+    <img bind:this={nave} src="/src/static/navep1.gif" alt="" class="nav" style="left: 0;">
+    <div class = "enemy">
+      <img src="/src/static/enemy2.gif" alt="inimigos " class ="enemy1">
+      <img src="/src/static/enemy3.gif" alt="inimigos " class ="enemy3">
+    </div>
 </div>
 
