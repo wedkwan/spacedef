@@ -23,9 +23,31 @@
   };
 </script>
 
-  
- <div class="tela">
-    <img bind:this={nave} src="/src/static/nave.png" alt="" class="nav" style="left: 0;">
-    
-</div>
+<style>
+  .cenario {
+    position: relative;
+    width: 1000px;
+    height: 632px;
+    border: 2px solid black;
+    overflow: hidden;
+  }
 
+  .nave {
+    position: absolute;
+    width: 670px;
+    height: 100px;
+    background-color: red;
+  }
+</style>
+
+<!-- Evento de teclado no cenário -->
+<div 
+  class="cenario" 
+  tabindex="0" 
+  on:keydown={movimentarNave}
+>
+  <div
+    class="nave"
+    style="transform: translate({posicaoX}px, {posicaoY}px);"
+  ></div>
+</div>
