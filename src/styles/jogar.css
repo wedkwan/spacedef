@@ -28,6 +28,10 @@
     margin: 0;
     top: 77px;
     left: 0;
-    width: 1060px;
+    width: 500px;
     z-index: 2;
   }
+
+.space{
+
+}
