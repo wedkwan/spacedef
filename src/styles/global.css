@@ -73,7 +73,7 @@
 .it a {
   display: block;
   font-family: "Pixelify Sans", serif;
-  margin-bottom: 20px; 
+  margin-bottom: 15px; 
   border-radius: 20px; 
   width: 200px;
   background:linear-gradient(to bottom,  #2b8fbb ,#1a5e85  ) ;

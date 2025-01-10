@@ -1,49 +1,78 @@
 <script lang="ts">
-  import { onMount } from "svelte";
-  let nave: number = 0; // Referência ao elemento da nave
-  let posicaoX: number = 0; // Posição inicial da nave no eixo X
-  let posicaoY: number = 0; // Posição inicial da nave no eixo Y
+  import { onMount } from "svelte"; // Importa o ciclo de vida `onMount` do Svelte.
+
+  // Referência ao elemento da nave, que será manipulada diretamente.
+  let nave: HTMLElement | null = null;
+
+  // Posição inicial da nave no cenário.
+  let posicaoX: number = 0; // Posição no eixo X
+  let posicaoY: number = 0; // Posição no eixo Y
+
+  // Dimensões do cenário onde a nave pode se mover.
   let larguraCenario: number = 1000; // Largura do cenário
   let alturaCenario: number = 632; // Altura do cenário
-  let larguraNave: number = 670; // Largura da nave
-  let alturaNave: number = 100; // Altura estimada da nave
-  const velocidade: number = 10; // Velocidade de movimento da nave
-  // Lógica de movimentação
+
+  // Dimensões da nave.
+  let larguraNave: number = 100; // Largura da nave
+  let alturaNave: number = 100; // Altura da nave
+
+  // Velocidade da movimentação da nave (em pixels por movimento).
+  const velocidade: number = 13;
+
+  // Função que controla a movimentação da nave com base na tecla pressionada.
   const movimentarNave = (event: KeyboardEvent): void => {
     if (event.key === "ArrowLeft" || event.key === "a") {
-      // Mover para a esquerda
+      // Move a nave para a esquerda, sem sair do limite esquerdo do cenário.
       posicaoX = Math.max(posicaoX - velocidade, 0);
     } else if (event.key === "ArrowRight" || event.key === "d") {
-      // Mover para a direita
+      // Move a nave para a direita, sem sair do limite direito do cenário.
       posicaoX = Math.min(posicaoX + velocidade, larguraCenario - larguraNave);
     } else if (event.key === "ArrowUp" || event.key === "w") {
-      // Mover para cima
+      // Move a nave para cima, sem sair do limite superior do cenário.
       posicaoY = Math.max(posicaoY - velocidade, 0);
     } else if (event.key === "ArrowDown" || event.key === "s") {
-      // Mover para baixo
+      // Move a nave para baixo, sem sair do limite inferior do cenário.
       posicaoY = Math.min(posicaoY + velocidade, alturaCenario - alturaNave);
     }
-    // Atualiza a posição da nave no estilo inline
+    // Atualiza a posição da nave no estilo `transform` do CSS.
     if (nave) {
-      nave.style.left = `${posicaoX}px`;
-      nave.style.top = `${posicaoY}px`;
+      nave.style.transform = `translate(${posicaoX}px, ${posicaoY}px)`;
     }
   };
-  // Adiciona o evento de teclado ao montar o componente
-  onMount((): (() => void) => {
-    window.addEventListener("keydown", movimentarNave);
-    return (): void => {
-      window.removeEventListener("keydown", movimentarNave);
+
+  // Referência ao elemento do cenário principal que captura os eventos de teclado.
+  let tela: HTMLElement | null = null;
+
+  // Adiciona o evento de teclado ao componente quando ele é montado.
+  onMount(() => {
+    // Função intermediária para lidar com o evento de tecla pressionada.
+    const handleKeydown = (event: KeyboardEvent) => movimentarNave(event);
+
+    // Adiciona o evento de `keydown` no elemento da tela (focado).
+    tela?.addEventListener("keydown", handleKeydown);
+
+    // Remove o evento de teclado ao desmontar o componente.
+    return () => {
+      tela?.removeEventListener("keydown", handleKeydown);
     };
   });
 </script>
 
+<!-- Estrutura HTML da interface -->
+<div bind:this={tela} class="tela" tabindex="0">
+  <!-- Elemento da nave, cuja posição é controlada dinamicamente -->
+  <img 
+    bind:this={nave} 
+    src="/src/static/navep1.gif" 
+    alt="Nave" 
+    class="nav" 
+    style="transform: translate(0, 0);"
+  >
   
- <div class="tela">
-    <img bind:this={nave} src="/src/static/navep1.gif" alt="" class="nav" style="left: 0;">
-    <div class = "enemy">
-      <img src="/src/static/enemy2.gif" alt="inimigos " class ="enemy1">
-      <img src="/src/static/enemy3.gif" alt="inimigos " class ="enemy3">
-    </div>
+  <!-- Div que contém os inimigos no cenário -->
+  <div class="enemy">
+    <!-- Imagens dos inimigos no cenário -->
+    <img src="/src/static/enemy2.gif" alt="inimigo" class="enemy1">
+    <img src="/src/static/enemy3.gif" alt="inimigo" class="enemy3">
+  </div>
 </div>
-
