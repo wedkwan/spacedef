@@ -19,19 +19,27 @@
       background-position: 0 100%;
     }
 }
-.enemy1{
+.enemies {
   position: absolute;
-  width:150px ;
-  top: 77px;
-  right: 50px;
-
+  top: 30px; 
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 20px; 
 }
 
-.enemy3{
-  position: absolute;
-  width: 150px;
-  
+.enelin {
+  display: flex;
+  justify-content: center;
+  gap: 30px; 
 }
+
+.enemy {
+  width: 90px;
+  height: auto;
+}
+
   
 .nav {
     position: absolute;
@@ -39,5 +47,5 @@
     top: 0;
     left: 0;
     width: 80px;
-    z-index: 2;
-  }
+    z-index: 4;
+}
