@@ -61,13 +61,13 @@
 <div bind:this={tela} class="tela" tabindex="0">
   <img bind:this={nave} src="/src/static/navep1.gif" alt="Nave" class="nav" style="transform: translate(0, 0);">
   <div class="enemies">
-    <!-- Primeira linha de inimigos -->
+    
     <div class="enelin">
       <img src="/src/static/enemy2.gif" alt="Inimigo" class="enemy">
       <img src="/src/static/enemy2.gif" alt="Inimigo" class="enemy">
       <img src="/src/static/enemy2.gif" alt="Inimigo" class="enemy">
     </div>
-    <!-- Segunda linha de inimigos -->
+    
     <div class="enelin">
       <img src="/src/static/enemy3.gif" alt="Inimigo" class="enemy">
       <img src="/src/static/enemy3.gif" alt="Inimigo" class="enemy">
