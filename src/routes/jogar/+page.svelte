@@ -65,13 +65,35 @@
     <div class="enelin">
       <img src="/src/static/enemy2.gif" alt="Inimigo" class="enemy">
       <img src="/src/static/enemy2.gif" alt="Inimigo" class="enemy">
+      <img src="/src/static/enemy2.gif" alt="Inimigo" class="enemy">  
       <img src="/src/static/enemy2.gif" alt="Inimigo" class="enemy">
+      <img src="/src/static/enemy2.gif" alt="Inimigo" class=" enemy">
+      <img src="/src/static/enemy2.gif" alt="Inimigo" class="enemy">
+      <img src="/src/static/enemy2.gif" alt="Inimigo" class="enemy">
+      <img src="/src/static/enemy2.gif" alt="Inimigo" class="enemy">
+
     </div>
     
     <div class="enelin">
       <img src="/src/static/enemy3.gif" alt="Inimigo" class="enemy">
       <img src="/src/static/enemy3.gif" alt="Inimigo" class="enemy">
       <img src="/src/static/enemy3.gif" alt="Inimigo" class="enemy">
+      <img src="/src/static/enemy3.gif" alt="Inimigo" class="enemy">
+      <img src="/src/static/enemy3.gif" alt="Inimigo" class="enemy">
+      <img src="/src/static/enemy3.gif" alt="Inimigo" class="enemy">
+      <img src="/src/static/enemy3.gif" alt="Inimigo" class="enemy">
+      <img src="/src/static/enemy3.gif" alt="Inimigo" class="enemy">
+    </div>
+    <div class="enelin">
+      <img src="/src/static/enemy3.gif" alt="Inimigo" class="enemy">
+      <img src="/src/static/enemy3.gif" alt="Inimigo" class="enemy">
+      <img src="/src/static/enemy3.gif" alt="Inimigo" class="enemy">
+      <img src="/src/static/enemy3.gif" alt="Inimigo" class="enemy">
+      <img src="/src/static/enemy3.gif" alt="Inimigo" class="enemy">
+      <img src="/src/static/enemy3.gif" alt="Inimigo" class="enemy">
+      <img src="/src/static/enemy3.gif" alt="Inimigo" class="enemy">
+      <img src="/src/static/enemy3.gif" alt="Inimigo" class="enemy">
     </div>
   </div>
 </div>
+ 
