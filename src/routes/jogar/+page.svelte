@@ -6,7 +6,7 @@
 
   // Posição inicial da nave no cenário.
   let posicaoX: number = 0; // Posição no eixo X
-  let posicaoY: number = 0; // Posição no eixo Y
+  let posicaoY: number = 0; // Posição no eixo Y, inicializado posteriormente.
 
   // Dimensões do cenário onde a nave pode se mover.
   let larguraCenario: number = 1000; // Largura do cenário
@@ -19,20 +19,17 @@
   // Velocidade da movimentação da nave (em pixels por movimento).
   const velocidade: number = 13;
 
+  // Calcula a posição inicial da nave uma linha abaixo da penúltima linha do cenário.
+  posicaoY = alturaCenario - alturaNave;
+
   // Função que controla a movimentação da nave com base na tecla pressionada.
   const movimentarNave = (event: KeyboardEvent): void => {
-    if (event.key === "ArrowLeft" || event.key === "a") {
+    if (event.key === "a") {
       // Move a nave para a esquerda, sem sair do limite esquerdo do cenário.
       posicaoX = Math.max(posicaoX - velocidade, 0);
-    } else if (event.key === "ArrowRight" || event.key === "d") {
+    } else if (event.key === "d") {
       // Move a nave para a direita, sem sair do limite direito do cenário.
       posicaoX = Math.min(posicaoX + velocidade, larguraCenario - larguraNave);
-    } else if (event.key === "ArrowUp" || event.key === "w") {
-      // Move a nave para cima, sem sair do limite superior do cenário.
-      posicaoY = Math.max(posicaoY - velocidade, 0);
-    } else if (event.key === "ArrowDown" || event.key === "s") {
-      // Move a nave para baixo, sem sair do limite inferior do cenário.
-      posicaoY = Math.min(posicaoY + velocidade, alturaCenario - alturaNave);
     }
     // Atualiza a posição da nave no estilo `transform` do CSS.
     if (nave) {
@@ -56,7 +53,9 @@
       tela?.removeEventListener("keydown", handleKeydown);
     };
   });
+
 </script>
+
 
 <div bind:this={tela} class="tela" tabindex="0">
   <img bind:this={nave} src="/src/static/navep1.gif" alt="Nave" class="nav" style="transform: translate(0, 0);">
