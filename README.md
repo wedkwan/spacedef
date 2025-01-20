@@ -1,3 +1,6 @@
+Space Defenders é uma recriação moderna do clássico Space Invaders, desenvolvida com Svelte e TypeScript. O jogo apresenta uma jogabilidade dinâmica, onde os jogadores devem defender a Terra de ondas de invasores espaciais, utilizando uma nave que pode se mover horizontalmente e atirar nos inimigos. Com a combinação de Svelte para a interface de usuário reativa e TypeScript para garantir uma experiência de desenvolvimento mais robusta, Space Defenders oferece um visual moderno e fluidez na jogabilidade, ao mesmo tempo que mantém a essência do jogo original.
+
+
 # create-svelte
 
 Everything you need to build a Svelte library, powered by [`create-svelte`](https://github.com/sveltejs/kit/tree/main/packages/create-svelte).
