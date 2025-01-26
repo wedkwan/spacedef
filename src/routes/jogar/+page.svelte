@@ -1,98 +1,95 @@
 <script lang="ts">
-  import { onMount } from "svelte"; // Importa o ciclo de vida `onMount` do Svelte.
+  // Configuração do cenário e elementos.
+  let larguraCenario = 1000; // Largura do cenário
+  let alturaCenario = 632; // Altura do cenário
+  let tamanhoElemento = 60; // Dimensão da nave e dos inimigos (largura e altura)
+  let velocidade = 13; // Velocidade de movimento da nave
 
-  // Referência ao elemento da nave, que será manipulada diretamente.
-  let nave: HTMLElement | null = null;
-
-  // Posição inicial da nave no cenário.
-  let posicaoX: number = 0; // Posição no eixo X
-  let posicaoY: number = 0; // Posição no eixo Y, inicializado posteriormente.
-
-  // Dimensões do cenário onde a nave pode se mover.
-  let larguraCenario: number = 1000; // Largura do cenário
-  let alturaCenario: number = 632; // Altura do cenário
-
-  // Dimensões da nave.
-  let larguraNave: number = 100; // Largura da nave
-  let alturaNave: number = 100; // Altura da nave
-
-  // Velocidade da movimentação da nave (em pixels por movimento).
-  const velocidade: number = 13;
-
-  // Calcula a posição inicial da nave uma linha abaixo da penúltima linha do cenário.
-  posicaoY = alturaCenario - alturaNave;
-
-  // Função que controla a movimentação da nave com base na tecla pressionada.
-  const movimentarNave = (event: KeyboardEvent): void => {
-    if (event.key === "a") {
-      // Move a nave para a esquerda, sem sair do limite esquerdo do cenário.
-      posicaoX = Math.max(posicaoX - velocidade, 0);
-    } else if (event.key === "d") {
-      // Move a nave para a direita, sem sair do limite direito do cenário.
-      posicaoX = Math.min(posicaoX + velocidade, larguraCenario - larguraNave);
-    }
-    // Atualiza a posição da nave no estilo `transform` do CSS.
-    if (nave) {
-      nave.style.transform = `translate(${posicaoX}px, ${posicaoY}px)`;
-    }
+  // Estado inicial do jogo.
+  let jogo = {
+    nave: { 
+      x: (larguraCenario - tamanhoElemento) / 2, // Posição inicial horizontal (centro do cenário)
+      y: alturaCenario - tamanhoElemento * 2    // Posição inicial vertical (penúltima linha)
+    },
+    inimigos: Array(3).fill(null).map((_, linha) => ({
+      tipo: linha < 2 ? 2 : 3, // Tipo de inimigo baseado na linha.
+      posicoes: Array(8).fill(null).map((_, coluna) => ({ x: coluna * 70, y: linha * 70 })) // Ajustando espaçamento proporcional.
+    }))
   };
 
-  // Referência ao elemento do cenário principal que captura os eventos de teclado.
-  let tela: HTMLElement | null = null;
+  // Função para verificar se há colisão com os limites do cenário.
+  function houveColisao(x: number): boolean {
+    return x < 0 || x > larguraCenario - tamanhoElemento;
+  }
 
-  // Adiciona o evento de teclado ao componente quando ele é montado.
-  onMount(() => {
-    // Função intermediária para lidar com o evento de tecla pressionada.
-    const handleKeydown = (event: KeyboardEvent) => movimentarNave(event);
+  // Função para tratar o evento de pressionar teclas.
+  function onKeyDown(evento: KeyboardEvent): void {
+    let novaPosicaoX = jogo.nave.x;
 
-    // Adiciona o evento de `keydown` no elemento da tela (focado).
-    tela?.addEventListener("keydown", handleKeydown);
+    if (evento.key === "a") {
+      novaPosicaoX -= velocidade; // Move para a esquerda
+    } else if (evento.key === "d") {
+      novaPosicaoX += velocidade; // Move para a direita
+    }
 
-    // Remove o evento de teclado ao desmontar o componente.
-    return () => {
-      tela?.removeEventListener("keydown", handleKeydown);
-    };
-  });
-
+    // Verifica colisão com os limites e atualiza posição
+    if (!houveColisao(novaPosicaoX)) {
+      jogo.nave.x = novaPosicaoX;
+    }
+  }
 </script>
 
+<!-- Vincula o evento diretamente ao componente -->
+<svelte:window on:keydown|preventDefault={onKeyDown} />
 
-<div bind:this={tela} class="tela" tabindex="0">
-  <img bind:this={nave} src="/src/static/navep1.gif" alt="Nave" class="nav" style="transform: translate(0, 0);">
+<div class="tela">
+  <!-- Nave -->
+  <img
+    src="/src/static/navep1.gif"
+    alt="Nave"
+    class="nave"
+    style="left: {jogo.nave.x}px; top: {jogo.nave.y}px;"
+  />
+
+  <!-- Inimigos -->
   <div class="enemies">
-    
-    <div class="enelin">
-      <img src="/src/static/enemy2.gif" alt="Inimigo" class="enemy">
-      <img src="/src/static/enemy2.gif" alt="Inimigo" class="enemy">
-      <img src="/src/static/enemy2.gif" alt="Inimigo" class="enemy">  
-      <img src="/src/static/enemy2.gif" alt="Inimigo" class="enemy">
-      <img src="/src/static/enemy2.gif" alt="Inimigo" class=" enemy">
-      <img src="/src/static/enemy2.gif" alt="Inimigo" class="enemy">
-      <img src="/src/static/enemy2.gif" alt="Inimigo" class="enemy">
-      <img src="/src/static/enemy2.gif" alt="Inimigo" class="enemy">
-
-    </div>
-    
-    <div class="enelin">
-      <img src="/src/static/enemy3.gif" alt="Inimigo" class="enemy">
-      <img src="/src/static/enemy3.gif" alt="Inimigo" class="enemy">
-      <img src="/src/static/enemy3.gif" alt="Inimigo" class="enemy">
-      <img src="/src/static/enemy3.gif" alt="Inimigo" class="enemy">
-      <img src="/src/static/enemy3.gif" alt="Inimigo" class="enemy">
-      <img src="/src/static/enemy3.gif" alt="Inimigo" class="enemy">
-      <img src="/src/static/enemy3.gif" alt="Inimigo" class="enemy">
-      <img src="/src/static/enemy3.gif" alt="Inimigo" class="enemy">
-    </div>
-    <div class="enelin">
-      <img src="/src/static/enemy3.gif" alt="Inimigo" class="enemy">
-      <img src="/src/static/enemy3.gif" alt="Inimigo" class="enemy">
-      <img src="/src/static/enemy3.gif" alt="Inimigo" class="enemy">
-      <img src="/src/static/enemy3.gif" alt="Inimigo" class="enemy">
-      <img src="/src/static/enemy3.gif" alt="Inimigo" class="enemy">
-      <img src="/src/static/enemy3.gif" alt="Inimigo" class="enemy">
-      <img src="/src/static/enemy3.gif" alt="Inimigo" class="enemy">
-      <img src="/src/static/enemy3.gif" alt="Inimigo" class="enemy">
-    </div>
+    {#each jogo.inimigos as inimigo}
+      <div class="enelin">
+        {#each inimigo.posicoes as posicao}
+          <img
+            src="/src/static/enemy{inimigo.tipo}.gif"
+            alt="Inimigo"
+            class="enemy"
+            style="left: {posicao.x}px; top: {posicao.y}px;"
+          />
+        {/each}
+      </div>
+    {/each}
   </div>
 </div>
- 
+
+<style>
+  .tela {
+    width: 1000px;
+    height: 632px;
+    position: relative;
+    overflow: hidden;
+    background-color: black;
+  }
+
+  .nave {
+    position: absolute;
+    width: 65px;
+    height: 65px;
+  }
+
+  .enemy {
+    position: absolute;
+    width: 65px;
+    height: 65px;
+  }
+
+  .enelin {
+    position: relative;
+  }
+</style>
