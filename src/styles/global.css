@@ -13,11 +13,11 @@
   align-items: center;
   width: 1000px;
   height: 632px;
-  border: 1px solid red;
+  border: 1px solid;
   margin: 40px auto;
   position: relative;
   overflow: hidden;
-  background-image: url(/src/static/fundo.gif);
+  background-image: url(/src/static/env.gif);
   background-color: black;
   background-repeat: repeat-y;
   background-size: 100% auto; 
@@ -26,17 +26,17 @@
 }
 @keyframes estrelas {
   from {
-    background-position: 0 0; /* Posição inicial */
+    background-position: 0 0; 
   }
   to {
-    background-position: 0 100%; /* Move o fundo para baixo */
+    background-position: 0 100%; 
   }
 }
 .jupt{
   position: relative;
-  width: 700px;
-  right: 240px;
-  top: -150px;
+  width: 45%;
+  right: 35%;
+  top: -29%;
   z-index: 1;
 
 }
@@ -44,7 +44,6 @@
 .nave{
   position: absolute;
   margin: 0;
-  
   top: 77px;
   left: 523px;
   width: 670px;
@@ -73,7 +72,7 @@
 .it a {
   display: block;
   font-family: "Pixelify Sans", serif;
-  margin-bottom: 15px; 
+  margin-bottom: 25px; 
   border-radius: 20px; 
   width: 200px;
   background:linear-gradient(to bottom,  #2b8fbb ,#1a5e85  ) ;
@@ -88,9 +87,83 @@
   transition: transform 0.2s; 
   
 }
+  #about{
+    width: 78%;
+    font-size: 28px;
+    opacity: 0.8;
+  }
 
 .it a:hover {
   transform: scale(1.05);
+  
+    background: linear-gradient(to bottom, #3ca0d0, #2b6b9e); 
+  
+  
 }
+
+  #about :hover{
+    opacity: 1;
+  }
+
+
+
+.sobre-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 75vw; /* Ajusta a largura para ser responsiva */
+  height: 85vh; /* Ajusta a altura para ser responsiva */
+  margin: 60px auto;
+  background-color: black;
+  background-image: url(/src/static/fundo.gif);
+  border: 1px solid #B8E5EB; /* Bordas para manter o estilo */
+  border-radius: 20px;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.5); /* Efeito de sombra */
+  color: #fff;
+  font-family: "Pixelify Sans", serif;
+}
+
+
+.sobre-logo {
+  width: 15%; 
+  margin-bottom: 20px;
+}
+
+
+.sobre-text {
+  font-size: 20px; 
+  text-align: center;
+  margin: 10px 0;
+  color: #fff;
+}
+
+
+.menu {
+  display: inline-block;
+  font-family: "Pixelify Sans", serif;
+  margin-top: 20px;
+  border-radius: 20px;
+  width: 200px;
+  background: linear-gradient(to bottom, #2b8fbb, #1a5e85);
+  padding: 15px 0;
+  border: 6px solid #B8E5EB;
+  text-align: center;
+  text-decoration: none;
+  font-size: 34px;
+  font-weight: bold;
+  color: #fff;
+  box-shadow: 3px 3px 5px rgba(0, 0, 0, 0.5);
+  transition: transform 0.2s;
+}
+
+.menu:hover {
+  transform: scale(1.05);
+}
+
+
+
+
+
 
 
