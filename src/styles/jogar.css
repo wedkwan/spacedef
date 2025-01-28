@@ -2,10 +2,10 @@
     display: flex;
     width: 1000px;
     height: 632px;
-    margin: 40px auto;
+    margin: 60px auto;
     position: relative;
     overflow: hidden;
-    background-image: url(/src/static/fundo.gif);
+    background-image: url(/src/static/env.gif);
     background-color: black;
     background-repeat: repeat-y;
     background-size: 100% auto;
@@ -52,9 +52,12 @@
   
 .nav {
     position: absolute;
-    margin: 0;
-    top: 0;
-    left: 0;
+    
     width: 80px;
     z-index: 4;
+    
+    
+    
 }
+
+
