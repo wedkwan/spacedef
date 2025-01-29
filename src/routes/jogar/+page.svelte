@@ -68,28 +68,3 @@
   </div>
 </div>
 
-<style>
-  .tela {
-    width: 1000px;
-    height: 632px;
-    position: relative;
-    overflow: hidden;
-    background-color: black;
-  }
-
-  .nave {
-    position: absolute;
-    width: 65px;
-    height: 65px;
-  }
-
-  .enemy {
-    position: absolute;
-    width: 65px;
-    height: 65px;
-  }
-
-  .enelin {
-    position: relative;
-  }
-</style>

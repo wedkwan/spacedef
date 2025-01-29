@@ -8,20 +8,22 @@
 
 }
 .cenario {
-  display: flex; 
-  justify-content: center;
+  display: flex;
+  flex-direction: column;
   align-items: center;
-  width: 1000px;
-  height: 632px;
-  border: 1px solid;
+  justify-content: center;
+  width: 75vw; /* Ajusta a largura para ser responsiva */
+  height: 85vh; /* Ajusta a altura para ser responsiva */
   margin: 40px auto;
   position: relative;
-  overflow: hidden;
-  background-image: url(/src/static/env.gif);
-  background-color: black;
   background-repeat: repeat-y;
-  background-size: 100% auto; 
-  animation: estrelas 8s linear infinite;
+  background-color: black;
+  background-image: url(/src/static/fundo.gif);
+  background-size: 100% auto;
+  border: 1px solid #B8E5EB; /* Bordas para manter o estilo */
+  border-radius: 20px;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.5); /* Efeito de sombra */
+  
 
 }
 @keyframes estrelas {
@@ -36,8 +38,8 @@
   position: relative;
   width: 45%;
   right: 35%;
-  top: -29%;
-  z-index: 1;
+  top: -25%;
+  z-index: 3;
 
 }
 
@@ -57,7 +59,7 @@
   width: 370px;
   z-index: 3;
   top: 20%;
-  z-index: 2;
+  z-index: 1;
 }
 
 .it{
@@ -65,7 +67,7 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  margin-top: 36%;
+  margin-top: 35%;
   z-index: 2;
 }
 
@@ -114,7 +116,7 @@
   justify-content: center;
   width: 75vw; /* Ajusta a largura para ser responsiva */
   height: 85vh; /* Ajusta a altura para ser responsiva */
-  margin: 60px auto;
+  margin: 40px auto;
   background-color: black;
   background-image: url(/src/static/fundo.gif);
   border: 1px solid #B8E5EB; /* Bordas para manter o estilo */
@@ -158,12 +160,6 @@
 }
 
 .menu:hover {
-  transform: scale(1.05);
+  transform: scale(1.05);
 }
-
-
-
-
-
-
 
