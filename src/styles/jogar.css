@@ -1,63 +1,50 @@
 .tela {
-    display: flex;
-    width: 1000px;
-    height: 632px;
-    margin: 60px auto;
-    position: relative;
-    overflow: hidden;
-    background-image: url(/src/static/env.gif);
-    background-color: black;
-    background-repeat: repeat-y;
-    background-size: 100% auto;
-    animation: estrelas 8s linear infinite;
+  display: flex;
+  width: 75vw; /* Ajusta a largura para ser responsiva */
+  height: 85vh;
+  margin: 40px auto;
+  position: relative;
+  overflow: hidden;
+  background-image: url(/src/static/env.gif);
+  border-radius: 20px;
+  background-color: black;
+  background-repeat: repeat-y;
+  background-size: 100% auto;
+  animation: estrelas 8s linear infinite;
 }
 @keyframes estrelas {
-    from {
-      background-position: 0 0;
-    }
-    to {
-      background-position: 0 100%;
-    }
+  from {
+    background-position: 0 0;
+  }
+  to {
+    background-position: 0 100%;
+  }
 }
 .enemies {
-  position: absolute;
-  top: 30px; 
-  width: 100%;
-  display: grid;
-  flex-direction: column;
-  align-items: center;
-  gap: 0px; 
+position: absolute;
+top: 30px; 
+width: 100%;
+display: grid;
+flex-direction: column;
+align-items: center;
+gap: 0px; 
 }
 
 
 
+
+.nave {
+position: absolute;
+width: 75px;
+height: 65px;
+}
 
 .enemy {
-  width: 90px;
-  height: auto;
-  margin: 0; 
-  padding: 0; 
-  border: none;
+position: absolute;
+width: 86px;
+height: 75px;
 }
+
 .enelin {
-  display: flex;
-  justify-content: center;
-  gap: 0px;
-  
-
-   
+position: relative;
 }
-
-
-  
-.nav {
-    position: absolute;
-    
-    width: 80px;
-    z-index: 4;
-    
-    
-    
-}
-
-
