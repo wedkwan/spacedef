@@ -1,7 +1,7 @@
 <div class = "cenario">
-    <img src="/src/static/jupt2.png" alt="jutp" class="jupt">
-     <img src="/src/static/space.png" alt="" class= "space">
-    <img src="/src/static/naveit.gif" alt="" class = "nave">
+    <img src="/src/static/images/jupt2.png" alt="jutp" class="jupt">
+     <img src="/src/static/images/space.png" alt="" class= "space">
+    <img src="/src/static/images/naveit.gif" alt="" class = "nave">
     
    
    <div class="it ">

@@ -18,7 +18,7 @@
   position: relative;
   background-repeat: repeat-y;
   background-color: black;
-  background-image: url(/src/static/fundo.gif);
+  background-image: url(/src/static/images/fundo.gif);
   background-size: 100% auto;
   border: 1px solid #B8E5EB; /* Bordas para manter o estilo */
   border-radius: 20px;
@@ -118,7 +118,7 @@
   height: 85vh; /* Ajusta a altura para ser responsiva */
   margin: 40px auto;
   background-color: black;
-  background-image: url(/src/static/fundo.gif);
+  background-image: url(/src/static/images/fundo.gif);
   border: 1px solid #B8E5EB; /* Bordas para manter o estilo */
   border-radius: 20px;
   box-shadow: 0 8px 20px rgba(0, 0, 0, 0.5); /* Efeito de sombra */

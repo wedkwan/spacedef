@@ -5,7 +5,7 @@
   margin: 40px auto;
   position: relative;
   overflow: hidden;
-  background-image: url(/src/static/env.gif);
+  background-image: url(/src/static/images/env.gif);
   border-radius: 20px;
   background-color: black;
   background-repeat: repeat-y;
@@ -30,13 +30,28 @@ align-items: center;
 gap: 0px; 
 }
 
-
+.tiro {
+  position: absolute;
+  background-image:  url('/src/static/images/bullet.gif');
+  background-color: gray;
+ background-size: cover;
+ border-radius: 20%;  
+  
+}
+.score {
+  position: absolute;
+  top: 10px;
+  left: 10px;
+  font-size: 24px;
+  color: aqua;
+  font-family: "Pixelify Sans", serif;
+}
 
 
 .nave {
 position: absolute;
-width: 75px;
-height: 65px;
+width: 85px;
+height: 75px;
 }
 
 .enemy {
@@ -47,4 +62,41 @@ height: 75px;
 
 .enelin {
 position: relative;
+}
+.tiro-inimigo {
+  position: absolute;
+  width: 5px;
+  height: 10px;
+  background: red;
+}
+.game-over {
+  position: fixed;
+  top: 0; left: 0;
+  width: 100vw; height: 100vh;
+  background: rgba(0, 0, 0, 0.8);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  font-size: 2rem;
+  font-family: "Pixelify Sans", serif;
+}
+
+.game-over-content {
+  background: #222;
+  padding: 2rem;
+  border-radius: 10px;
+  text-align: center;
+}
+
+button {
+  margin-top: 1rem;
+  font-size: 1.5rem;
+  padding: 10px 20px;
+  cursor: pointer;
+  background: red;
+  border: none;
+  color: white;
+  border-radius: 5px;
+  font-family: "Pixelify Sans", serif;
 }

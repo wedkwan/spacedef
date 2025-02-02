@@ -1,5 +1,5 @@
 <div class="sobre-container">
-    <img class="sobre-logo" src="src/static/logif.jpg" alt="Logo IFPE" />
+    <img class="sobre-logo" src="src/static/images/logif.jpg" alt="Logo IFPE" />
     
     <p class="sobre-text">
       Autor: Jean Lucas, Paulo, Wedney
