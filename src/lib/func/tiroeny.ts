@@ -1,4 +1,5 @@
-import { jogo ,inimigos, tirosInimigos, tamanhoElemento, alturaCenario, gameOver } from "$lib/stores/gstores.js";
+import { jogo,inimigos, tirosInimigos, tamanhoElemento, alturaCenario, gameOver } from "$lib/stores/gstores.js"; 
+import { tocarSom } from "./audio.js";
 
 export function dispararInimigos() {
   setInterval(() => {
@@ -16,6 +17,7 @@ export function dispararInimigos() {
               y: inimigoEscolhido.y + tamanhoElemento,
               ativo: true
             });
+            tocarSom('/src/static/music/laser3.mp3'); // S
           }
         }
       });

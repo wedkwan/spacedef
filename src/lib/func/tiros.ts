@@ -1,5 +1,6 @@
-import { jogo,cooldownTempo,  tamanhoElemento, inimigos , score,
-tiros } from "$lib/stores/gstores.js";
+import { jogo,cooldownTempo,  tamanhoElemento, inimigos , score, tiros } from "$lib/stores/gstores.js";
+import { adicionarExplosao } from "./fcolis.js";
+import { tocarSom } from "./audio.js";
 
 let ultimaVezQueTiro = 0;
 
@@ -18,7 +19,8 @@ export function disparar() {
         }
       ]);
     })();
-
+     
+    tocarSom('/src/static/music/laser.mp3'); 
     ultimaVezQueTiro = agora;
   }
 }
@@ -57,7 +59,11 @@ export function moverTiros() {
 
             if (colidiu) {
               // Se colidiu, remove o inimigo atingido e para o tiro
-              score.update(n => n + 10);
+              score.update(n => n + 10); 
+              adicionarExplosao(posicao.x, posicao.y);
+              tocarSom('/music/explosao.mp3'); // Som da explosão
+
+              
               // tocarSom('/sounds/explosao.mp3'); // Som de explosão 💥
               inimigo.posicoes.splice(j, 1);
 

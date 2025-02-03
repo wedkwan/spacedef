@@ -3,6 +3,18 @@
   import Tiro from '$lib/componetes/Tiro.svelte';
   import Inimigo from '$lib/componetes/Enemy.svelte';
   import  {score , gameOver} from '$lib/stores/gstores.js';
+  import { onMount , onDestroy} from 'svelte';
+  import { tocarMusica, paraMusica, tocarSom } from '$lib/func/audio.js';
+
+  onMount(() => {
+  tocarMusica('/src/static/music/jogo.mp3'); // Música da home
+  paraMusica 
+    tocarSom
+});
+   onDestroy(() => {
+    paraMusica(); // Para a música ao sair da página
+  });
+
 
 
 let gameOverStatus = false;
@@ -24,9 +36,10 @@ function reiniciarJogo() {
 }
 
 </script>
-
+<h2>{finalScore}</h2>
 <div class="tela">
   <h1 class="score">SCORE:{$score}</h1>
+  
   <Nave />
   <Tiro />
   <Inimigo />

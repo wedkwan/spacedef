@@ -3,6 +3,7 @@
   import { inimigos, tirosInimigos, gameOver } from '../stores/gstores.js';
   import { moverInimigos } from "../func/moveny.js";
   import { dispararInimigos, moverTirosInimigos, verificarColisoes } from "../func/tiroeny.js";
+  import { explosoes } from '../func/fcolis.js';
 
   let intervaloMovimento: number | null = null;
   let intervaloTiros: number | null = null;
@@ -40,5 +41,24 @@
   <div class="tiro-inimigo" style="left: {tiro.x}px; top: {tiro.y}px;"></div>
 {/each}
 
-<!-- Exibe a tela de Game Over se o jogador for atingido -->
+
+
+{#each $explosoes as explosao}
+  <img
+    src="/images/explosao.gif"
+    alt="Explosão"
+    class="explosao"
+    style="left: {explosao.x}px; top: {explosao.y}px;"
+  />
+{/each}
+
+<style>
+  .explosao {
+    position: absolute;
+    width: 60px;
+    height: 60px;
+    pointer-events: none;
+  }
+</style>
+
 
