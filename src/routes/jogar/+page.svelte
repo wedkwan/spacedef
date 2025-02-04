@@ -36,7 +36,7 @@ function reiniciarJogo() {
 }
 
 </script>
-<h2>{finalScore}</h2>
+
 <div class="tela">
   <h1 class="score">SCORE:{$score}</h1>
   

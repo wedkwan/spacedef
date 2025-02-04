@@ -1,14 +1,21 @@
 import { writable } from 'svelte/store';
-export const larguraCenario = 1000;
-export const alturaCenario = 632;
-export const tamanhoElemento = 60;
-export const velocidadeNave =  13;
-export const velocidadeInimigos  = 25;
-export const intervaloMovimento = 500 ;
-export const tiros = writable<{ x: number; y: number; ativo: boolean }[]>([]);
-export  const cooldownTempo = 500; 
-export const score = writable(0);  
 
+//estado do jogo
+export const score = writable(0); 
+export const larguraCenario = 1500;
+export const alturaCenario = 900;
+export const tamanhoElemento = 60;
+
+ 
+
+//game-over 
+export const gameOver = writable(false);
+export function definirGameOver() {
+  gameOver.set(true);
+}
+ 
+//nave 
+export const velocidadeNave =  16;
 export const  jogo = writable( {
   nave: { 
     x: (larguraCenario - tamanhoElemento) / 2,
@@ -16,14 +23,19 @@ export const  jogo = writable( {
   }
 })
 
+// criar inimigos
+export const velocidadeInimigos  = 25;
+export const intervaloMovimento = 450 ;
+
 export const inimigos = writable(
-  Array(3).fill(null).map((_, linha) => ({
+  Array(2).fill(null).map((_, linha) => ({
     tipo: linha < 2 ? 2 : 3,
-    posicoes: Array(8).fill(null).map((_, coluna) => ({ x: coluna * 70, y: linha * 70 }))
+    posicoes: Array(4).fill(null).map((_, coluna) => ({ x: coluna * 70, y: linha * 70 }))
   }))
 );
 
-
+// tiros 
+export  const cooldownTempo = 500;
 export const tirosInimigos = writable<{ x: number; y: number; ativo: boolean }[]>([]);
-export const gameOver = writable(false);
+export const tiros = writable<{ x: number; y: number; ativo: boolean }[]>([]);
 

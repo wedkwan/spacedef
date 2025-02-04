@@ -35,23 +35,27 @@
   }
 }
 .jupt{
-  position: relative;
+  position: relative ;
   width: 45%;
   right: 35%;
   top: -25%;
   z-index: 3;
 
 }
+.planet{
+  position :absolute ;
+  overflow: hidden;
+  width: 35%;
+  left: 69%; 
+  top: 15%;
+  
+  z-index: 1;
 
-.nave{
-  position: absolute;
-  margin: 0;
-  top: 77px;
-  left: 523px;
-  width: 670px;
-  right: 0;
-  z-index: 2;
 }
+
+
+
+
 
 .space{
   position: absolute;

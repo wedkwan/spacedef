@@ -8,7 +8,7 @@ export function dispararInimigos() {
 
       // Escolhe alguns inimigos aleatórios para atirar
       inimigosAtuais.forEach(inimigo => {
-        if (Math.random() < 0.1) { // 10% de chance de atirar por ciclo
+        if (Math.random() < 0.2) { // 10% de chance de atirar por ciclo
           const inimigoEscolhido = inimigo.posicoes[Math.floor(Math.random() * inimigo.posicoes.length)];
 
           if (inimigoEscolhido) {
@@ -34,7 +34,7 @@ export function moverTirosInimigos() {
       return tirosAtuais
         .map(tiro => ({
           ...tiro,
-          y: tiro.y + 5, // Move o tiro para baixo
+          y: tiro.y + 18, // Move o tiro para baixo
           ativo: tiro.y < alturaCenario // Remove os tiros que saem da tela
         }))
         .filter(tiro => tiro.ativo);

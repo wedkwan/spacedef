@@ -1,14 +1,15 @@
 <script lang="ts">
   import { onMount, onDestroy } from 'svelte';
-  import { inimigos, tirosInimigos, gameOver } from '../stores/gstores.js';
+  import { tirosInimigos, gameOver , inimigos } from '../stores/gstores.js';
   import { moverInimigos } from "../func/moveny.js";
   import { dispararInimigos, moverTirosInimigos, verificarColisoes } from "../func/tiroeny.js";
-  import { explosoes } from '../func/fcolis.js';
+  import { explosoes ,  } from '../func/funcutil.js';
 
   let intervaloMovimento: number | null = null;
   let intervaloTiros: number | null = null;
 
   onMount(() => {
+    
     moverInimigos();
     dispararInimigos();
     moverTirosInimigos();
@@ -45,7 +46,7 @@
 
 {#each $explosoes as explosao}
   <img
-    src="/images/explosao.gif"
+    src="src/static/images/kabum.gif"
     alt="Explosão"
     class="explosao"
     style="left: {explosao.x}px; top: {explosao.y}px;"
@@ -55,8 +56,8 @@
 <style>
   .explosao {
     position: absolute;
-    width: 60px;
-    height: 60px;
+    width: 90px;
+    height: 90px;
     pointer-events: none;
   }
 </style>

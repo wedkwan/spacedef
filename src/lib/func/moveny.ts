@@ -1,18 +1,44 @@
+import { inimigos, alturaCenario, larguraCenario, tamanhoElemento, velocidadeInimigos, intervaloMovimento  , gameOver , jogo , definirGameOver} from '../stores/gstores.js';
+import { get } from "svelte/store";
 
-import { inimigos ,alturaCenario , velocidadeInimigos , larguraCenario ,tamanhoElemento,intervaloMovimento } from '../stores/gstores.js'
+let direcao = 1;
+let movimentoAtivo = false; // Evita múltiplas execuções
 
-let direcao = 1
-let intervaloId: number | null = null; 
+function verificarGameOver() {
+  const nave = get(jogo).nave; // Obtém a posição atual da nave
 
+  inimigos.subscribe(lista => {
+    lista.forEach(inimigo => {
+      inimigo.posicoes.forEach(posicao => {
+        // Se o inimigo chegou na parte inferior da tela, Game Over!
+        if (posicao.y >= alturaCenario - tamanhoElemento) {
+          definirGameOver();
+        }
+
+         //Verifica colisão com a nave
+        let colisao = posicao.x < nave.x + tamanhoElemento &&
+                      posicao.x + tamanhoElemento > nave.x &&
+                      posicao.y < nave.y + tamanhoElemento &&
+                      posicao.y + tamanhoElemento > nave.y;
+
+        if (colisao) {
+          definirGameOver();
+        }
+      });
+    });
+  });
+}
 
 export function moverInimigos() {
-  if (intervaloId !== null) return; // Se já estiver rodando, não cria outro intervalo
+  if (movimentoAtivo) return; // Evita múltiplas execuções
+  movimentoAtivo = true;
 
-  intervaloId = setInterval(() => {
-    inimigos.update(inimigosAtuais => {
+  function atualizarMovimento() {
+    if (get(gameOver)) return; // Para tudo se for Game Over!
+
+    inimigos.update((inimigosAtuais) => {
       let precisaDescer = false;
 
-      // Verifica se algum inimigo atingiu a borda
       inimigosAtuais.forEach(inimigo => {
         inimigo.posicoes.forEach(posicao => {
           let novaPosicaoX = posicao.x + velocidadeInimigos * direcao;
@@ -23,24 +49,32 @@ export function moverInimigos() {
       });
 
       if (precisaDescer) {
-        direcao *= -1; // Inverte a direção
-        return inimigosAtuais.map(inimigo => ({
+        direcao *= -1;
+        inimigosAtuais = inimigosAtuais.map(inimigo => ({
           ...inimigo,
           posicoes: inimigo.posicoes.map(posicao => ({
             ...posicao,
-            y: posicao.y + tamanhoElemento // Desce uma linha
+            y: posicao.y + tamanhoElemento
           }))
         }));
       } else {
-        return inimigosAtuais.map(inimigo => ({
+        inimigosAtuais = inimigosAtuais.map(inimigo => ({
           ...inimigo,
           posicoes: inimigo.posicoes.map(posicao => ({
             ...posicao,
-            x: posicao.x + velocidadeInimigos * direcao // Move na horizontal
+            x: posicao.x + velocidadeInimigos * direcao
           }))
         }));
       }
+
+      return inimigosAtuais;
     });
-  }, intervaloMovimento);
+
+    verificarGameOver(); 
+
+    setTimeout(atualizarMovimento, intervaloMovimento);
+  }
+
+  atualizarMovimento();
 }
 

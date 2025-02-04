@@ -1,7 +1,7 @@
 <script lang="ts">
     import { disparar, moverTiros  } from '../func/tiros.js';
     import {  velocidadeNave , jogo } from '../stores/gstores.js'
-    import { houveColisao } from '../func/fcolis.js';
+    import { houveColisao } from '../func/funcutil.js';
     
     
   

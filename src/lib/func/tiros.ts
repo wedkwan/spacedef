@@ -1,14 +1,13 @@
 import { jogo,cooldownTempo,  tamanhoElemento, inimigos , score, tiros } from "$lib/stores/gstores.js";
-import { adicionarExplosao } from "./fcolis.js";
+import { adicionarExplosao, novaOnda ,} from "./funcutil.js";
 import { tocarSom } from "./audio.js";
 
-let ultimaVezQueTiro = 0;
 
 export function disparar() {
   const agora = Date.now();
-
+  let ultimaVezQueTiro = 0;
   if (agora - ultimaVezQueTiro > cooldownTempo) {
-    // Precisamos pegar a posição atual da nave usando subscribe
+    
     jogo.subscribe(state => {
       tiros.update(tirosAtuais => [
         ...tirosAtuais,
@@ -27,7 +26,6 @@ export function disparar() {
 
 
 
-// import { tocarSom } from "$lib/func/audio.js";
 
 
 export function moverTiros() {
@@ -58,18 +56,16 @@ export function moverTiros() {
                           tiro.y + 10 > posicao.y;
 
             if (colidiu) {
-              // Se colidiu, remove o inimigo atingido e para o tiro
+              
               score.update(n => n + 10); 
               adicionarExplosao(posicao.x, posicao.y);
-              tocarSom('/music/explosao.mp3'); // Som da explosão
-
-              
-              // tocarSom('/sounds/explosao.mp3'); // Som de explosão 💥
+              tocarSom('/music/explosao.mp3'); 
               inimigo.posicoes.splice(j, 1);
 
-              // Se a linha do inimigo ficou vazia, removemos ela
+            
               if (inimigo.posicoes.length === 0) {
                 inimigosRestantes.splice(i, 1);
+                
               }
 
               tiroAtivo = false; // Tiro para imediatamente
@@ -82,8 +78,11 @@ export function moverTiros() {
 
         return tiroAtivo; // Se for falso, o tiro será removido
       });
-
-      return inimigosRestantes;
+        if (inimigosRestantes.length === 0) {
+            setTimeout(() => novaOnda (), 2000 );
+         }
+      
+        return inimigosRestantes;
     });
 
     return tirosAtualizados;

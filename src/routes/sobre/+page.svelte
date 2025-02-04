@@ -2,7 +2,7 @@
     <img class="sobre-logo" src="src/static/images/logif.jpg" alt="Logo IFPE" />
     
     <p class="sobre-text">
-      Autor: Jean Lucas, Paulo, Wedney
+      Autor: davi , ryan , Jean Lucas, Paulo , Wedney , 
     </p>
     <p class="sobre-text">
       <a href="mailto:allan.lima@igarassu.ifpe.edu.br">allan.lima@igarassu.ifpe.edu.br</a>
