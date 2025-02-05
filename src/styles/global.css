@@ -45,9 +45,9 @@
 .planet{
   position :absolute ;
   overflow: hidden;
-  width: 35%;
-  left: 69%; 
-  top: 15%;
+  width: 39%;
+  left: 68%; 
+  top: 25%;
   
   z-index: 1;
 
@@ -96,7 +96,7 @@
   #about{
     width: 78%;
     font-size: 28px;
-    opacity: 0.8;
+  
   }
 
 .it a:hover {
@@ -107,9 +107,7 @@
   
 }
 
-  #about :hover{
-    opacity: 1;
-  }
+  
 
 
 
@@ -167,3 +165,15 @@
   transform: scale(1.05);
 }
 
+.toggle-music {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  background: none;
+  border: none;
+  cursor: pointer;
+}
+.toggle-music img {
+  width: 40px;
+  height: 40px;
+}

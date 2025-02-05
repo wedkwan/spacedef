@@ -38,7 +38,7 @@ gap: 0px;
  border-radius: 20%;  
   
 }
-.score {
+.life {
   position: absolute;
   top: 10px;
   left: 10px;
@@ -46,8 +46,16 @@ gap: 0px;
   color: aqua;
   font-family: "Pixelify Sans", serif;
 }
-
-
+.score {
+  position: absolute;
+  font-family: "Pixelify Sans", serif;
+  top: 10px;
+  left: 50%;
+  transform: translateX(-50%);
+  font-size: 24px;
+  font-weight: bold;
+  color: white;
+}
 .nave {
 position: absolute;
 width: 85px;

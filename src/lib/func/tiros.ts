@@ -41,7 +41,7 @@ export function moverTiros() {
       let inimigosRestantes = [...inimigosAtuais];
 
       tirosAtualizados = tirosAtualizados.filter(tiro => {
-        let tiroAtivo = true; // Assume que o tiro ainda não atingiu ninguém
+        let tiroAtivo = true; 
 
         for (let i = 0; i < inimigosRestantes.length; i++) {
           let inimigo = inimigosRestantes[i];
@@ -49,7 +49,7 @@ export function moverTiros() {
           for (let j = 0; j < inimigo.posicoes.length; j++) {
             let posicao = inimigo.posicoes[j];
 
-            // Verifica colisão
+            
             let colidiu = tiro.x < posicao.x + tamanhoElemento &&
                           tiro.x + 5 > posicao.x &&
                           tiro.y < posicao.y + tamanhoElemento &&

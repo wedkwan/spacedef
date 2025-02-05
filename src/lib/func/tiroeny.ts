@@ -1,14 +1,19 @@
-import { jogo,inimigos, tirosInimigos, tamanhoElemento, alturaCenario, gameOver } from "$lib/stores/gstores.js"; 
+import { jogo, inimigos, tirosInimigos, tamanhoElemento, alturaCenario, gameOver ,vida } from "$lib/stores/gstores.js"; 
 import { tocarSom } from "./audio.js";
+import { get } from "svelte/store";
+import { adicionarExplosao } from "./funcutil.js";
+
 
 export function dispararInimigos() {
+  
   setInterval(() => {
+    if (get(gameOver)) return;
     inimigos.update(inimigosAtuais => {
       const novosTiros: { x: number; y: number; ativo: boolean }[] = [];
 
       // Escolhe alguns inimigos aleatórios para atirar
       inimigosAtuais.forEach(inimigo => {
-        if (Math.random() < 0.2) { // 10% de chance de atirar por ciclo
+        if (Math.random() < 0.7) { // 10% de chance de atirar por ciclo
           const inimigoEscolhido = inimigo.posicoes[Math.floor(Math.random() * inimigo.posicoes.length)];
 
           if (inimigoEscolhido) {
@@ -29,6 +34,7 @@ export function dispararInimigos() {
 }
 
 export function moverTirosInimigos() {
+  
   setInterval(() => {
     tirosInimigos.update(tirosAtuais => {
       return tirosAtuais
@@ -44,25 +50,45 @@ export function moverTirosInimigos() {
 
 
 export function verificarColisoes() {
-    setInterval(() => {
-      tirosInimigos.update(tirosAtuais => {
-        let naveX: number, naveY: number;
-  
-        jogo.subscribe(state => {
-          naveX = state.nave.x;
-          naveY = state.nave.y;
-        })();
-  
-        tirosAtuais.forEach(tiro => {
-          const colidiu = tiro.x > naveX && tiro.x < naveX + tamanhoElemento &&
-                          tiro.y > naveY && tiro.y < naveY + tamanhoElemento;
-  
-          if (colidiu) {
-            gameOver.set(true); // Define o estado de Game Over
+  setInterval(() => {
+    tirosInimigos.update(tirosAtuais => {
+      let naveX: number, naveY: number;
+      // Obtém a posição atual da nave (utilize get() ou subscribe com imediatidade)
+      jogo.subscribe(state => {
+        naveX = state.nave.x;
+        naveY = state.nave.y;
+      })();
+
+      // Filtra os tiros, removendo os que colidiram
+      const novosTiros = tirosAtuais.filter(tiro => {
+        const colidiu =
+          tiro.x > naveX &&
+          tiro.x < naveX + tamanhoElemento &&
+          tiro.y > naveY &&
+          tiro.y < naveY + tamanhoElemento;
+
+        if (colidiu) {
+          
+          vida.update(v => v - 1);
+          
+          console.log(get(vida));
+          if (get(vida) === 0) {
+            jogo.update(state => ({
+              ...state,
+              nave: {
+                ...state.nave,
+                viva: false
+              }
+            }));
+            adicionarExplosao (naveX , naveY)
+            gameOver.set(true);
           }
-        });
-  
-        return tirosAtuais;
+          return false; 
+        }
+        return true; 
       });
-    }, 100);
-  }
+
+      return novosTiros;
+    });
+  }, 100);
+}
