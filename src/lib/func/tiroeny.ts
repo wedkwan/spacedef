@@ -13,7 +13,7 @@ export function dispararInimigos() {
 
       // Escolhe alguns inimigos aleatórios para atirar
       inimigosAtuais.forEach(inimigo => {
-        if (Math.random() < 0.7) { // 10% de chance de atirar por ciclo
+        if (Math.random() < 0.35) { // 10% de chance de atirar por ciclo
           const inimigoEscolhido = inimigo.posicoes[Math.floor(Math.random() * inimigo.posicoes.length)];
 
           if (inimigoEscolhido) {

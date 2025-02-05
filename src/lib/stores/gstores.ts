@@ -18,7 +18,7 @@ export function definirGameOver() {
  
 //nave 
 export const vida = writable(3) 
-export const velocidadeNave =  16;
+export const velocidadeNave =  18;
 export const  jogo = writable( {
   nave: { 
     x: (larguraCenario - tamanhoElemento) / 2,
@@ -33,9 +33,9 @@ export const velocidadeInimigos  = 25;
 export const intervaloMovimento = 450 ;
 
 export const inimigos = writable(
-  Array(2).fill(null).map((_, linha) => ({
+  Array(4).fill(null).map((_, linha) => ({
     tipo: linha < 2 ? 2 : 3,
-    posicoes: Array(4).fill(null).map((_, coluna) => ({ x: coluna * 70, y: linha * 70 }))
+    posicoes: Array(9).fill(null).map((_, coluna) => ({ x: coluna * 70, y: linha * 70 }))
   }))
 );
 
