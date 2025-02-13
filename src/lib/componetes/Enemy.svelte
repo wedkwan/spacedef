@@ -54,12 +54,7 @@
 {/each}
 
 <style>
-  .explosao {
-    position: absolute;
-    width: 90px;
-    height: 90px;
-    pointer-events: none;
-  }
+ 
 </style>
 
 

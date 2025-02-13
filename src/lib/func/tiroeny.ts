@@ -40,7 +40,7 @@ export function moverTirosInimigos() {
       return tirosAtuais
         .map(tiro => ({
           ...tiro,
-          y: tiro.y + 18, // Move o tiro para baixo
+          y: tiro.y + 18, 
           ativo: tiro.y < alturaCenario // Remove os tiros que saem da tela
         }))
         .filter(tiro => tiro.ativo);

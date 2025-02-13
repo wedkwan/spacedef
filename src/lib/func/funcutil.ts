@@ -17,10 +17,10 @@ export function adicionarExplosao(x: number, y: number) {
     explosoes.update(atual => atual.slice(1)); 
   }, 800); //ms
 }
-  // Função par erar nova onda de inimigos
+
   let ondaatual = 1 
 export function novaOnda() {
-  // A quantidade de inimigos vai dobrar a cada nova onda
+  
   ondaatual++
   let numeroLinhas = 4;  // 3 linhas de inimigos no começo
   let numeroColunas = 9 ;// 4 inimigos por linha
@@ -29,12 +29,12 @@ export function novaOnda() {
   let novosInimigos = Array(numeroLinhas ).fill(null).map((_, linha) => ({
     tipo: linha < 2 ? 2 : 3,  // Tipo de inimigo (alterar conforme necessário)
     posicoes: Array(numeroColunas + 1 ).fill(null).map((_, coluna) => ({
-      x: coluna * 70,  // Espaço entre os inimigos horizontalmente
-      y: linha * 70,   // Espaço entre os inimigos verticalmente
+      x: coluna * 70,  
+      y: linha * 70,   
     }))
   }));
 
-  inimigos.set(novosInimigos); // Atualiza o estado dos inimigos com a nova onda
+  inimigos.set(novosInimigos);
 }
 
 

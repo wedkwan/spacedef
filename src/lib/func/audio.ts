@@ -29,14 +29,12 @@ export function tocarMusica(src: string): void {
   });
 }
 
-/**
- * Função para parar a música de fundo.
- */
+
 export function paraMusica(): void {
   music.update((m) => {
     if (m.audio) {
       m.audio.pause();
-      m.audio.currentTime = 0;  // Reinicia a música para o início
+      m.audio.currentTime = 0;  
     }
     return { audio: null, currentSrc: '' };
   });
@@ -45,7 +43,7 @@ export function paraMusica(): void {
 export function tocarSom(caminho: string) {
   if (!get(audioEnabled)) return;
   let efeito = new Audio(caminho);
-  efeito.volume = 0.9;
+  efeito.volume = 0.5;
   efeito.play().catch(err => console.log("Erro ao tocar som:", err));
 }
 

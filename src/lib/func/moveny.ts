@@ -5,17 +5,17 @@ let direcao = 1;
 let movimentoAtivo = false; // Evita múltiplas execuções
 
 function verificarGameOver() {
-  const nave = get(jogo).nave; // Obtém a posição atual da nave
+  const nave = get(jogo).nave; 
 
   inimigos.subscribe(lista => {
     lista.forEach(inimigo => {
       inimigo.posicoes.forEach(posicao => {
-        // Se o inimigo chegou na parte inferior da tela, Game Over!
+        
         if (posicao.y >= alturaCenario - tamanhoElemento) {
           definirGameOver();
         }
 
-         //Verifica colisão com a nave
+         
         let colisao = posicao.x < nave.x + tamanhoElemento &&
                       posicao.x + tamanhoElemento > nave.x &&
                       posicao.y < nave.y + tamanhoElemento &&
@@ -30,7 +30,7 @@ function verificarGameOver() {
 }
 
 export function moverInimigos() {
-  if (movimentoAtivo) return; // Evita múltiplas execuções
+  if (movimentoAtivo) return; 
   movimentoAtivo = true;
 
   function atualizarMovimento() {

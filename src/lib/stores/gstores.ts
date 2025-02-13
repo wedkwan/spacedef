@@ -3,7 +3,7 @@ import { writable } from 'svelte/store';
 //estado do jogo
 export const score = writable(0); 
 export const larguraCenario = 1411;
-export const alturaCenario = 800;
+export const alturaCenario = 900;
 export const tamanhoElemento = 60;
 export const audioEnabled = writable(true);
 
@@ -18,7 +18,7 @@ export function definirGameOver() {
  
 //nave 
 export const vida = writable(3) 
-export const velocidadeNave =  18;
+export const velocidadeNave =  22;
 export const  jogo = writable( {
   nave: { 
     x: (larguraCenario - tamanhoElemento) / 2,
@@ -40,7 +40,7 @@ export const inimigos = writable(
 );
 
 // tiros 
-export  const cooldownTempo = 500;
+export  const cooldownTempo = 650;
 export const tirosInimigos = writable<{ x: number; y: number; ativo: boolean }[]>([]);
 export const tiros = writable<{ x: number; y: number; ativo: boolean }[]>([]);
 

@@ -2,10 +2,10 @@ import { jogo,cooldownTempo,  tamanhoElemento, inimigos , score, tiros } from "$
 import { adicionarExplosao, novaOnda ,} from "./funcutil.js";
 import { tocarSom } from "./audio.js";
 
-
+let ultimaVezQueTiro = 0;
 export function disparar() {
   const agora = Date.now();
-  let ultimaVezQueTiro = 0;
+  
   if (agora - ultimaVezQueTiro > cooldownTempo) {
     
     jogo.subscribe(state => {
@@ -88,5 +88,5 @@ export function moverTiros() {
     return tirosAtualizados;
   });
 }
-setInterval(moverTiros, 50);
+setInterval(moverTiros, 20);//ms
 

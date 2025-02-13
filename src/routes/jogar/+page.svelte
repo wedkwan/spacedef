@@ -37,7 +37,7 @@ function reiniciarJogo() {
 </script>
 
 <div class="tela">
-  <h1 class = "life"> LIFE:{$vida}</h1>
+  <h1 class = "life"> HP:{$vida}</h1>
 
      
  

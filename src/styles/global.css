@@ -20,9 +20,9 @@
   background-color: black;
   background-image: url(/src/static/images/fundo.gif);
   background-size: 100% auto;
-  border: 1px solid #B8E5EB; /* Bordas para manter o estilo */
+  border: 1px solid #B8E5EB; 
   border-radius: 20px;
-  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.5); /* Efeito de sombra */
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.5); 
   
 
 }
@@ -116,14 +116,14 @@
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  width: 75vw; /* Ajusta a largura para ser responsiva */
-  height: 85vh; /* Ajusta a altura para ser responsiva */
+  width: 75vw; 
+  height: 85vh; 
   margin: 40px auto;
   background-color: black;
   background-image: url(/src/static/images/fundo.gif);
-  border: 1px solid #B8E5EB; /* Bordas para manter o estilo */
+  border: 1px solid #B8E5EB; 
   border-radius: 20px;
-  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.5); /* Efeito de sombra */
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.5); 
   color: #fff;
   font-family: "Pixelify Sans", serif;
 }
