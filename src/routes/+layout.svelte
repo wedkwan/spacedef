@@ -1,4 +1,4 @@
 <script>
-    import "../styles/global.css"
+    import "../styles/home.css"
 </script>
 <slot/>

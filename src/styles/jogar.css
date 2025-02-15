@@ -1,8 +1,8 @@
 .tela {
   display: flex;
-  width: 75vw; /* Ajusta a largura para ser responsiva */
-  height: 85vh;
-  margin: 40px auto;
+  width: 75vw ;
+  height: 85vh; 
+  margin: 7% auto;
   position: relative;
   overflow: hidden;
   background-image: url(/src/static/images/env.gif);

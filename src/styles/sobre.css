@@ -1,0 +1,128 @@
+@import url("https://fonts.googleapis.com/css2?family=Pixelify+Sans:wght@400..700&display=swap");
+
+.container {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 75vw; /* Ajusta a largura para ser responsiva */
+  height: 85vh;
+  margin: 7% auto;
+  background-repeat: repeat-y;
+  background-image: url(/src/static/images/fundo.gif);
+  border: 1px solid #b8e5eb;
+  border-radius: 20px;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.5);
+  color: #fff;
+  font-family: "Pixelify Sans", serif;
+}
+
+/* Estilo dos botões */
+.botao {
+  background: linear-gradient(to bottom, #2b8fbb, #1a5e85);
+  color: #ffff;
+  padding: 10px 20px;
+  font-weight: bold;
+  cursor: pointer;
+  font-size: 19px;
+  border-radius: 13px;
+  text-align: center;
+  width: 180px;
+  height: 50px;
+  align-items: center;
+  justify-content: center;
+  font-family: "Pixelify Sans", serif;
+  box-shadow: 3px 3px 5px rgba(0, 0, 0, 0.5);
+  border: 4px solid #b8e5eb;
+  transition: transform 0.2s;
+  text-decoration: none;
+}
+
+.botao:hover {
+  transform: scale(1.05);
+  background: linear-gradient(to bottom, #3ca0d0, #2b6b9e);
+}
+
+/* Posicionamento dos botões */
+.botoes {
+  position: absolute;
+  left: 5%;
+  display: flex;
+  flex-direction: column;
+  gap: 70px;
+  font-family: "Pixelify Sans", serif;
+}
+
+#history {
+  position: relative;
+  width: 120%;
+  height: 60px;
+  left: -10%;
+}
+
+.menu {
+  position: absolute;
+  right: 5%;
+  bottom: 5%;
+  background: linear-gradient(to bottom, #2b8fbb, #1a5e85);
+  color: white;
+  padding: 15px 0;
+  border: 6px solid #b8e5eb;
+  cursor: pointer;
+  font-size: 28px;
+  border-radius: 13px;
+  text-align: center;
+  width: 200px;
+  height: 30px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-decoration: none;
+  box-shadow: 3px 3px 5px rgba(0, 0, 0, 0.5);
+
+  transition: transform 0.2s;
+}
+
+.menu:hover {
+  transform: scale(1.05);
+  background: linear-gradient(to bottom, #3ca0d0, #2b6b9e);
+}
+
+.conteudo {
+  position: absolute;
+  width: 400px;
+  padding: 20px;
+  background: rgba(0, 0, 0, 0.9);
+  border-radius: 10px;
+  border: 2px solid white;
+  text-align: center;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  display: none;
+  position: absolute;
+}
+
+.ativo {
+  display: block;
+}
+
+/* Botão de fechar (X) */
+.fechar {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+}
+
+.planeta {
+  width: 63%;
+  height: 100%;
+  background: url("/src/static/images/terra1.png") no-repeat center center;
+  background-size: cover;
+  position: absolute;
+  z-index: 0;
+}

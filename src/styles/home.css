@@ -1,0 +1,111 @@
+@import url("https://fonts.googleapis.com/css2?family=Pixelify+Sans:wght@400..700&display=swap");
+
+* {
+  margin: 0;
+  padding: 0;
+}
+.cenario {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 75vw; /* Ajusta a largura para ser responsiva */
+  height: 85vh; /* Ajusta a altura para ser responsiva */
+  margin: 7% auto;
+  position: relative;
+  background-repeat: repeat-y;
+  background-color: black;
+  background-image: url(/src/static/images/fundo.gif);
+  background-size: 100% auto;
+  border: 1px solid #b8e5eb;
+  border-radius: 20px;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.5);
+}
+@keyframes estrelas {
+  from {
+    background-position: 0 0;
+  }
+  to {
+    background-position: 0 100%;
+  }
+}
+.jupt {
+  position: relative;
+  width: 45%;
+  right: 35%;
+  top: -25%;
+  z-index: 3;
+}
+.planet {
+  position: absolute;
+  overflow: hidden;
+  width: 39%;
+  left: 66%;
+  top: 49%;
+
+  z-index: 1;
+}
+
+.space {
+  position: absolute;
+  align-items: center;
+  width: 370px;
+  z-index: 3;
+  top: 20%;
+  z-index: 1;
+}
+
+.it {
+  position: absolute;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 35%;
+  z-index: 2;
+}
+
+.it a {
+  display: block;
+  font-family: "Pixelify Sans", serif;
+  margin-bottom: 25px;
+  border-radius: 20px;
+  width: 200px;
+  background: linear-gradient(to bottom, #2b8fbb, #1a5e85);
+  padding: 15px 0;
+  border: 6px solid #b8e5eb;
+  text-align: center;
+  text-decoration: none;
+  font-size: 34px;
+  font-weight: bold;
+  color: #ffff;
+  box-shadow: 3px 3px 5px rgba(0, 0, 0, 0.5);
+  transition: transform 0.2s;
+}
+#about {
+  width: 78%;
+  font-size: 28px;
+}
+
+.it a:hover {
+  transform: scale(1.05);
+
+  background: linear-gradient(to bottom, #3ca0d0, #2b6b9e);
+}
+
+.sobre-logo {
+  width: 15%;
+  margin-bottom: 20px;
+}
+
+.toggle-music {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  background: none;
+  border: none;
+  cursor: pointer;
+}
+.toggle-music img {
+  width: 40px;
+  height: 40px;
+}

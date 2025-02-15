@@ -1,25 +1,34 @@
-import { inimigos, alturaCenario, larguraCenario, tamanhoElemento, velocidadeInimigos, intervaloMovimento  , gameOver , jogo , definirGameOver} from '../stores/gstores.js';
+import {
+  inimigos,
+  alturaCenario,
+  larguraCenario,
+  tamanhoElemento,
+  velocidadeInimigos,
+  intervaloMovimento,
+  gameOver,
+  jogo,
+  definirGameOver,
+} from "../stores/gstores.js";
 import { get } from "svelte/store";
 
 let direcao = 1;
 let movimentoAtivo = false; // Evita múltiplas execuções
 
 function verificarGameOver() {
-  const nave = get(jogo).nave; 
+  const nave = get(jogo).nave;
 
-  inimigos.subscribe(lista => {
-    lista.forEach(inimigo => {
-      inimigo.posicoes.forEach(posicao => {
-        
+  inimigos.subscribe((lista) => {
+    lista.forEach((inimigo) => {
+      inimigo.posicoes.forEach((posicao) => {
         if (posicao.y >= alturaCenario - tamanhoElemento) {
           definirGameOver();
         }
 
-         
-        let colisao = posicao.x < nave.x + tamanhoElemento &&
-                      posicao.x + tamanhoElemento > nave.x &&
-                      posicao.y < nave.y + tamanhoElemento &&
-                      posicao.y + tamanhoElemento > nave.y;
+        let colisao =
+          posicao.x < nave.x + tamanhoElemento &&
+          posicao.x + tamanhoElemento > nave.x &&
+          posicao.y < nave.y + tamanhoElemento &&
+          posicao.y + tamanhoElemento > nave.y;
 
         if (colisao) {
           definirGameOver();
@@ -30,7 +39,7 @@ function verificarGameOver() {
 }
 
 export function moverInimigos() {
-  if (movimentoAtivo) return; 
+  if (movimentoAtivo) return;
   movimentoAtivo = true;
 
   function atualizarMovimento() {
@@ -39,10 +48,13 @@ export function moverInimigos() {
     inimigos.update((inimigosAtuais) => {
       let precisaDescer = false;
 
-      inimigosAtuais.forEach(inimigo => {
-        inimigo.posicoes.forEach(posicao => {
+      inimigosAtuais.forEach((inimigo) => {
+        inimigo.posicoes.forEach((posicao) => {
           let novaPosicaoX = posicao.x + velocidadeInimigos * direcao;
-          if (novaPosicaoX < 0 || novaPosicaoX > larguraCenario - tamanhoElemento) {
+          if (
+            novaPosicaoX < 0 ||
+            novaPosicaoX > larguraCenario - tamanhoElemento
+          ) {
             precisaDescer = true;
           }
         });
@@ -50,31 +62,30 @@ export function moverInimigos() {
 
       if (precisaDescer) {
         direcao *= -1;
-        inimigosAtuais = inimigosAtuais.map(inimigo => ({
+        inimigosAtuais = inimigosAtuais.map((inimigo) => ({
           ...inimigo,
-          posicoes: inimigo.posicoes.map(posicao => ({
+          posicoes: inimigo.posicoes.map((posicao) => ({
             ...posicao,
-            y: posicao.y + tamanhoElemento
-          }))
+            y: posicao.y + tamanhoElemento,
+          })),
         }));
       } else {
-        inimigosAtuais = inimigosAtuais.map(inimigo => ({
+        inimigosAtuais = inimigosAtuais.map((inimigo) => ({
           ...inimigo,
-          posicoes: inimigo.posicoes.map(posicao => ({
+          posicoes: inimigo.posicoes.map((posicao) => ({
             ...posicao,
-            x: posicao.x + velocidadeInimigos * direcao
-          }))
+            x: posicao.x + velocidadeInimigos * direcao,
+          })),
         }));
       }
 
       return inimigosAtuais;
     });
 
-    verificarGameOver(); 
+    verificarGameOver();
 
     setTimeout(atualizarMovimento, intervaloMovimento);
   }
 
   atualizarMovimento();
 }
-
