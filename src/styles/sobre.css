@@ -9,6 +9,7 @@
   width: 75vw; /* Ajusta a largura para ser responsiva */
   height: 85vh;
   margin: 7% auto;
+   background-size: 100% auto;
   background-repeat: repeat-y;
   background-image: url(/src/static/images/fundo.gif);
   border: 1px solid #b8e5eb;
@@ -60,10 +61,17 @@
   height: 60px;
   left: -10%;
 }
+.logo {
+  position: absolute;
+  top: 17%;
+  right: 5%;
+  width: 23%;
+
+}
 
 .menu {
   position: absolute;
-  right: 5%;
+  right: 9%;
   bottom: 5%;
   background: linear-gradient(to bottom, #2b8fbb, #1a5e85);
   color: white;
@@ -73,8 +81,8 @@
   font-size: 28px;
   border-radius: 13px;
   text-align: center;
-  width: 200px;
-  height: 30px;
+  width: 130px;
+  height: 20px;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -83,6 +91,7 @@
 
   transition: transform 0.2s;
 }
+
 
 .menu:hover {
   transform: scale(1.05);
@@ -102,27 +111,92 @@
   transform: translate(-50%, -50%);
   display: none;
   position: absolute;
+  font-size: 20px;
+  
+
+
 }
+.fechar {
+  position: absolute;
+  top: 10%;
+  right: 0%;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  color: #fff;
+  z-index: 12;
+  
+}
+
+
+#historia-container {
+  position: absolute;
+  height: 55%;
+  background: rgba(0, 0, 0, 0.9);
+  width: 500px; 
+  perspective: 240px;
+  perspective-origin: center 15%;
+  overflow: hidden;
+
+}
+.text-container {
+  position: relative;
+  width: 100%;
+  height: 80%;
+  transform: rotateX(64deg) scale(0.55, 0.3) translateY(120vh);
+  animation: 56s linear 0s infinite translateText;
+  
+}
+.text {
+  font-size: 6vh;
+  color: #fff;
+  text-align: justify;
+}
+
+.fade {
+  position: fixed;
+  top: 0;
+  right: 0;
+  left: 0;
+  height: 40vh;
+  background: linear-gradient(
+    0deg,
+    rgba(0, 0, 0, 0),
+    rgba(0, 0, 0, 0.25),
+    rgba(0, 0, 0, 1),
+    rgba(0, 0, 0, 1)
+  );
+  z-index: 10;
+} 
+
+
+@keyframes translateText {
+  0% {
+    transform: rotateX(64deg) scale(0.55, 0.3) translateY(120vh);
+  }
+  100% {
+    transform: rotateX(64deg) scale(0.55, 0.3) translateY(-400vh);
+  }
+}
+
 
 .ativo {
   display: block;
 }
 
-/* Botão de fechar (X) */
-.fechar {
-  position: absolute;
-  top: 10px;
-  right: 10px;
-  background: transparent;
-  border: none;
-  cursor: pointer;
-}
+
+
 
 .planeta {
-  width: 63%;
+  width: 68%;
   height: 100%;
   background: url("/src/static/images/terra1.png") no-repeat center center;
   background-size: cover;
   position: absolute;
   z-index: 0;
 }
+
+
+
+
+

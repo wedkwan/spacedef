@@ -41,3 +41,5 @@ export function novaOnda() {
 
   inimigos.set(novosInimigos);
 }
+ 
+

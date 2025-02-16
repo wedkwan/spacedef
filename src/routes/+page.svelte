@@ -3,7 +3,7 @@
   import { onMount, onDestroy } from "svelte";
   import { tocarMusica, paraMusica } from "$lib/func/audio.js";
   import { audioEnabled } from "$lib/stores/gstores.js";
- 
+  
 
   onMount(() => {
     tocarMusica("/src/static/music/home.mp3"); // Música da home
@@ -26,7 +26,7 @@
 </script>
 
 <div class="cenario">
-  <button class="toggle-musicnpm " on:click={toggleAudio}>
+  <button class="toggle-music " on:click={toggleAudio}>
     <img src="/src/static/images/sound-on.png" alt="Sound" />
   </button>
   <img src="/src/static/images/jupt2.png" alt="jutp" class="jupt" />

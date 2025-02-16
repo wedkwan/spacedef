@@ -2,7 +2,7 @@ import { writable } from "svelte/store";
 
 //estado do jogo
 export const score = writable(0);
-export const larguraCenario = 997;
+export const larguraCenario = 1398;
 export const alturaCenario = 796;
 export const tamanhoElemento = 80;
 export const audioEnabled = writable(true);
