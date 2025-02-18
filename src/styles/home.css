@@ -39,7 +39,7 @@
 .planet {
   position: absolute;
   overflow: hidden;
-  width: 39%;
+  width: 40%;
   left: 66%;
   top: 49%;
 
@@ -49,7 +49,7 @@
 .space {
   position: absolute;
   align-items: center;
-  width: 370px;
+  width: 570px;
   z-index: 3;
   top: 20%;
   z-index: 1;

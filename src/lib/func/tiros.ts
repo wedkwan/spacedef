@@ -9,9 +9,12 @@ import {
 import { adicionarExplosao, novaOnda } from "./funcutil.js";
 import { tocarSom } from "./audio.js";
 
-let ultimaVezQueTiro = 0;
+
+let novaOndaTimeout:any = null;
+
 export function disparar() {
   const agora = Date.now();
+  let ultimaVezQueTiro = 0
 
   if (agora - ultimaVezQueTiro > cooldownTempo) {
     jogo.subscribe((state) => {
@@ -76,8 +79,12 @@ export function moverTiros() {
 
         return tiroAtivo; // Se for falso, o tiro será removido
       });
-      if (inimigosRestantes.length === 0) {
-        setTimeout(() => novaOnda(), 2000);
+
+      if (inimigosRestantes.length === 0 && !novaOndaTimeout) {
+        novaOndaTimeout = setTimeout(() => {
+          novaOnda();
+          novaOndaTimeout = null;
+        }, 3);
       }
 
       return inimigosRestantes;
@@ -86,4 +93,5 @@ export function moverTiros() {
     return tirosAtualizados;
   });
 }
+
 setInterval(moverTiros, 20); //ms
