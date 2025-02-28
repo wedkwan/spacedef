@@ -2,7 +2,7 @@ import {
   larguraCenario,
   tamanhoElemento,
   inimigos,
-  gameOver
+  gameOver,
 } from "../stores/gstores.js";
 import { writable } from "svelte/store";
 
@@ -22,51 +22,36 @@ export function adicionarExplosao(x: number, y: number) {
 }
 
 let ondaatual = 1;
+let numeroLinhas = 1;
+let numeroColunas = 1;
+let contador: number = 1;
 
-let numeroLinhas = 1; // 3 linhas de inimigos no começo
-let numeroColunas = 1; // 4 inimigos por linha
-let contador : number = 1;
+const maxLinhas = 5;
+const maxColunas = 5;
 
 export function novaOnda() {
+  console.log(novaOnda);
 
+  const linhas = Math.min(numeroLinhas + contador, maxLinhas);
+  const colunas = Math.min(numeroColunas + contador, maxColunas);
 
+  let novosInimigos = Array(linhas)
+    .fill(null)
+    .map((_, linha) => ({
+      tipo: linha < 2 ? 2 : 3,
+      posicoes: Array(colunas)
+        .fill(null)
+        .map((_, coluna) => ({
+          x: coluna * 70,
+          y: linha * 70,
+        })),
+    }));
 
-  ondaatual++;
-  console.log(novaOnda)
-  
-  let res = numeroLinhas + contador
+  contador++;
+  inimigos.set(novosInimigos);
 
-  if(res <= 4){
-    let novosInimigos = Array(res)
-      .fill(null)
-      .map((_, linha) => ({
-        tipo: linha < 2 ? 2 : 3, // Tipo de inimigo (alterar conforme necessário)
-        posicoes: Array(numeroColunas + contador)
-          .fill(null)
-          .map((_, coluna) => ({
-            x: coluna * 70,
-            y: linha * 70,
-          })),
-      break
-      }));
-      
-      
-      contador++
-      //console.log(novosInimigos)
-    
-      inimigos.set(novosInimigos);
-      
-    
-
-  
-  }else{
+  if (novosInimigos.length === 0) {
     setTimeout(() => gameOver.set(true), 530);
   }
-
-  // Calculando o novo número de inimigos baseado no número atual
-  
-
+  ondaatual++;
 }
-
- 
-

@@ -7,7 +7,7 @@ export const alturaCenario = 796;
 export const tamanhoElemento = 80;
 export const audioEnabled = writable(true);
 
-//game-over 
+//game-over
 export const gameOver = writable(false);
 export function definirGameOver() {
   gameOver.set(true);
@@ -29,11 +29,11 @@ export const velocidadeInimigos = 15;
 export const intervaloMovimento = 450;
 
 export const inimigos = writable(
-  Array(1)
+  Array(2)
     .fill(null)
     .map((_, linha) => ({
       tipo: linha < 2 ? 2 : 3,
-      posicoes: Array(1)
+      posicoes: Array(2)
         .fill(null)
         .map((_, coluna) => ({ x: coluna * 70, y: linha * 70 })),
     }))
@@ -41,5 +41,7 @@ export const inimigos = writable(
 
 // tiros
 export const cooldownTempo = 650;
-export const tirosInimigos = writable<{ x: number; y: number; ativo: boolean }[]>([]);
+export const tirosInimigos = writable<
+  { x: number; y: number; ativo: boolean }[]
+>([]);
 export const tiros = writable<{ x: number; y: number; ativo: boolean }[]>([]);

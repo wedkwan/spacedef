@@ -19,7 +19,7 @@ export function dispararInimigos() {
 
       // Escolhe alguns inimigos aleatórios para atirar
       inimigosAtuais.forEach((inimigo) => {
-        if (Math.random() < 0.35) {
+        if (Math.random() < 0.01) {
           // 10% de chance de atirar por ciclo
           const inimigoEscolhido =
             inimigo.posicoes[
@@ -88,7 +88,7 @@ export function verificarColisoes() {
               },
             }));
             adicionarExplosao(naveX, naveY);
-           setTimeout(() => gameOver.set(true), 530);//ms
+            setTimeout(() => gameOver.set(true), 530); //ms
           }
           return false;
         }

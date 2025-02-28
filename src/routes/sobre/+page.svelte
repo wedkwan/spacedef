@@ -2,11 +2,13 @@
   import { writable } from "svelte/store";
   import X from "lucide-svelte/icons/x";
 
-  const abaAtiva = writable<"integrantes" | "historia" | "controles" | null>(
-    null
-  );
+  const abaAtiva = writable<
+    "integrantes" | "historia" | "controles" | "mostrar_IA" | null
+  >(null);
 
-  function mostrarAba(aba: "integrantes" | "historia" | "controles") {
+  function mostrarAba(
+    aba: "integrantes" | "historia" | "controles" | "mostrar_IA"
+  ) {
     abaAtiva.set($abaAtiva === aba ? null : aba);
   }
 
@@ -16,10 +18,8 @@
 </script>
 
 <div class="container">
-  
   <div class="planeta"></div>
 
-  
   <div class="botoes">
     <button class="botao" on:click={() => mostrarAba("integrantes")}
       >DEVELOPERS</button
@@ -31,19 +31,27 @@
       >CONTROLS</button
     >
   </div>
+  <button class="botao" id="IA" on:click={() => mostrarAba("mostrar_IA")}>
+    ?
+  </button>
 
   <img src="/src/static/images/logif.png" alt="" class="logo" />
   <a class="menu" href="/">BACK</a>
 
-  
   <div class="conteudo {$abaAtiva === 'integrantes' ? 'ativo' : ''}">
     <button class="fechar" on:click={fecharAba}><X /></button>
-    <h3 class="integrantes">Members</h3>
+    <h2 class="integrantes">Members</h2>
+    <br /><br />
     <p><strong>Paulo Fernandes</strong></p>
     <p><strong>Wedney Kawan</strong></p>
     <p><strong>Jean Lucas</strong></p>
     <p><strong>Ryan Carlos</strong></p>
     <p><strong>Davi Guilherme</strong></p>
+  </div>
+
+  <div class="conteudo {$abaAtiva === 'mostrar_IA' ? 'ativo' : ''}">
+    <button class="fechar" on:click={fecharAba}><X /></button>
+    <h1>ffff</h1>
   </div>
 
   <div
@@ -63,7 +71,7 @@
           The Jovian Devourers, gaseous intelligent beings who inhabit the upper
           layers of the gas giant's atmosphere, have begun a devastating
           invasion of Earth.
-        </p> 
+        </p>
         <br /><br />
 
         <p>
@@ -89,7 +97,6 @@
         <br /><br />
 
         <p>
-
           Facing endless waves of invaders, Voss must destroy the Jovian
           extractor ships before they initiate the 'Jovian Purge' process, which
           would drain all Earth's resources, leaving it barren.
@@ -102,9 +109,10 @@
   <div class="conteudo {$abaAtiva === 'controles' ? 'ativo' : ''}">
     <button class="fechar" on:click={fecharAba}><X /></button>
     <h3>Controls</h3>
+    <br /><br />
     <p>A / ← - Move left</p>
     <p>D / → - Move right</p>
-    <p>Space / x -  Shoots</p>
+    <p>Space / x - Shoots</p>
     <p>Esc - Pause</p>
   </div>
 </div>
