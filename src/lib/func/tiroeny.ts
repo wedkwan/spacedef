@@ -6,9 +6,10 @@ import {
   alturaCenario,
   gameOver,
   vida,
+  ctiroinimigo 
 } from "$lib/stores/gstores.js";
 import { tocarSom } from "./audio.js";
-import { get } from "svelte/store";
+import { get , writable } from "svelte/store";
 import { adicionarExplosao } from "./funcutil.js";
 
 export function dispararInimigos() {
@@ -19,7 +20,7 @@ export function dispararInimigos() {
 
       // Escolhe alguns inimigos aleatórios para atirar
       inimigosAtuais.forEach((inimigo) => {
-        if (Math.random() < 0.01) {
+        if (Math.random() < get(ctiroinimigo)) {
           // 10% de chance de atirar por ciclo
           const inimigoEscolhido =
             inimigo.posicoes[

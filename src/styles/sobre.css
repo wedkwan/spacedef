@@ -9,7 +9,7 @@
   width: 75vw; /* Ajusta a largura para ser responsiva */
   height: 85vh;
   margin: 7% auto;
-   background-size: 100% auto;
+  background-size: 100% auto;
   background-repeat: repeat-y;
   background-image: url(/src/static/images/fundo.gif);
   border: 1px solid #b8e5eb;
@@ -66,7 +66,6 @@
   top: 23%;
   right: 5%;
   width: 17%;
-
 }
 
 .menu {
@@ -92,7 +91,6 @@
   transition: transform 0.2s;
 }
 
-
 .menu:hover {
   transform: scale(1.05);
   background: linear-gradient(to bottom, #3ca0d0, #2b6b9e);
@@ -112,9 +110,6 @@
   display: none;
   position: absolute;
   font-size: 20px;
-  
-
-
 }
 .fechar {
   position: absolute;
@@ -125,35 +120,48 @@
   cursor: pointer;
   color: #fff;
   z-index: 12;
-  
 }
 #IA {
-  position: absolute;
-  top: 10px;
-  right: 10px;
+  position: absolute ;
+  top: 1%;
+  right: 5%;
+  font-size: 35px;
   background: none;
   border: none;
   cursor: pointer;
-}
+  background-size: cover  ;
+  height: -20%;
+  width: 20px;
+  z-index: 0;
 
+}
 
 #historia-container {
   position: absolute;
   height: 45%;
   background: rgba(0, 0, 0, 0.9);
-  width: 520px; 
+  width: 520px;
   perspective: 240px;
   perspective-origin: center 15%;
   overflow: hidden;
-
 }
+
+@keyframes translateText {
+  0% {
+    transform: rotateX(64deg) scale(0.55, 0.3) translateY(120vh);
+  }
+  100% {
+    transform: rotateX(64deg) scale(0.55, 0.3) translateY(-400vh);
+  }
+}
+
 .text-container {
   position: relative;
   width: 100%;
   height: 80%;
   transform: rotateX(64deg) scale(0.55, 0.3) translateY(120vh);
-  animation: 50s linear 0s infinite translateText;
-  
+  animation: translateText 50s cubic-bezier(0.09, 0.3, 1, 1.2) infinite;
+  animation-delay: 0ms;
 }
 .text {
   font-size: 6vh;
@@ -175,25 +183,11 @@
     rgba(0, 0, 0, 1)
   );
   z-index: 10;
-} 
-
-
-@keyframes translateText {
-  0% {
-    transform: rotateX(64deg) scale(0.55, 0.3) translateY(120vh);
-  }
-  100% {
-    transform: rotateX(64deg) scale(0.55, 0.3) translateY(-400vh);
-  }
 }
-
 
 .ativo {
   display: block;
 }
-
-
-
 
 .planeta {
   width: 68%;
@@ -203,8 +197,3 @@
   position: absolute;
   z-index: 0;
 }
-
-
-
-
-

@@ -2,8 +2,8 @@ import { writable } from "svelte/store";
 
 //estado do jogo
 export const score = writable(0);
-export const larguraCenario = 1398;
-export const alturaCenario = 796;
+export const larguraCenario = 1411;  //1000
+export const alturaCenario = 840;    //632
 export const tamanhoElemento = 80;
 export const audioEnabled = writable(true);
 
@@ -44,4 +44,6 @@ export const cooldownTempo = 650;
 export const tirosInimigos = writable<
   { x: number; y: number; ativo: boolean }[]
 >([]);
+export const ctiroinimigo = writable(0.3);
+
 export const tiros = writable<{ x: number; y: number; ativo: boolean }[]>([]);

@@ -2,7 +2,8 @@ import {
   larguraCenario,
   tamanhoElemento,
   inimigos,
-  gameOver,
+  gameOver, 
+  
 } from "../stores/gstores.js";
 import { writable } from "svelte/store";
 
@@ -31,6 +32,7 @@ const maxColunas = 5;
 
 export function novaOnda() {
   console.log(novaOnda);
+  
 
   const linhas = Math.min(numeroLinhas + contador, maxLinhas);
   const colunas = Math.min(numeroColunas + contador, maxColunas);

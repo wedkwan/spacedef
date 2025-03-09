@@ -5,16 +5,16 @@ import {
   inimigos,
   score,
   tiros,
+  ctiroinimigo
 } from "$lib/stores/gstores.js";
 import { adicionarExplosao, novaOnda } from "./funcutil.js";
 import { tocarSom } from "./audio.js";
 
-
-let novaOndaTimeout:any = null;
+let novaOndaTimeout: any = null;
 
 export function disparar() {
   const agora = Date.now();
-  let ultimaVezQueTiro = 0
+  let ultimaVezQueTiro = 0;
 
   if (agora - ultimaVezQueTiro > cooldownTempo) {
     jogo.subscribe((state) => {
@@ -62,7 +62,7 @@ export function moverTiros() {
             if (colidiu) {
               score.update((n) => n + 10);
               adicionarExplosao(posicao.x, posicao.y);
-              tocarSom("/music/explosao.mp3");
+
               inimigo.posicoes.splice(j, 1);
 
               if (inimigo.posicoes.length === 0) {
@@ -84,6 +84,9 @@ export function moverTiros() {
         novaOndaTimeout = setTimeout(() => {
           novaOnda();
           novaOndaTimeout = null;
+          ctiroinimigo.update((n) => n * 1.2);
+          
+          
         }, 3);
       }
 

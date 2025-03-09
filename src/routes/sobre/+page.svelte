@@ -51,7 +51,17 @@
 
   <div class="conteudo {$abaAtiva === 'mostrar_IA' ? 'ativo' : ''}">
     <button class="fechar" on:click={fecharAba}><X /></button>
-    <h1>ffff</h1>
+    <p>
+      This game was developed using the Svelte framework with TypeScript, HTML
+      and CSS, using a componentization system to ensure the project's
+      organization. During the process, AI helped in several stages, from code
+      optimization to the creation of mechanics and story elements.
+    </p>
+    <p>
+      The AI ​​contributed ideas for the health system, the ship's and enemy's
+      firing patterns, and the opponents' zigzag movement. It also helped with
+      the game's difficulty.
+    </p>
   </div>
 
   <div

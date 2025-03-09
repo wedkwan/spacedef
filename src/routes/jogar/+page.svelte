@@ -2,28 +2,59 @@
   import Nave from "$lib/componetes/Player.svelte";
   import Tiro from "$lib/componetes/Tiro.svelte";
   import Inimigo from "$lib/componetes/Enemy.svelte";
-  import { score, gameOver, vida, audioEnabled } from "$lib/stores/gstores.js";
-  import { onMount, onDestroy } from "svelte";
-  import { tocarMusica, paraMusica } from "$lib/func/audio.js";
+  import { score, gameOver, vida, ctiroinimigo } from "$lib/stores/gstores.js";
+  import { onMount } from "svelte";
   import { get } from "svelte/store";
-  onMount(() => {
-    // Música da home
-    paraMusica;
-  });
-  onDestroy(() => {
-    paraMusica(); // Para a música ao sair da página
-  });
+  import {
+    recorde,
+    carregarRecorde,
+    type Recorde,
+  } from "$lib/stores/recordStore.js";
 
-  let gameOverStatus = false;
+  let gameOverStatus = false; // Controle para exibir tela "Game Over"
   let finalScore = 0;
+  let recordeData: Recorde = { nick: "kawan", score: 20 }; // Corrigido
 
-  $: {
-    gameOver.subscribe((value) => {
-      gameOverStatus = value;
-      if (value) {
-        score.subscribe((s) => (finalScore = s));
-      }
-    });
+  // Carrega o recorde ao iniciar a tela
+  onMount(async () => {
+    await carregarRecorde();
+    recordeData = get(recorde);
+  });
+
+  // Observa mudanças no gameOver
+  gameOver.subscribe(async (value) => {
+    gameOverStatus = value;
+
+    if (value) {
+      finalScore = get(score);
+      await carregarRecorde();
+      recordeData = get(recorde);
+    }
+  });
+
+  $: if (gameOverStatus) {
+    if (finalScore > recordeData.score) {
+      setTimeout(async () => {
+        let nick = prompt("Congratulations! New record! Enter your name:");
+        if (nick) {
+          try {
+            const response = await fetch("http://localhost:3000/recorde", {
+              method: "POST",
+              headers: { "Content-Type": "application/json" },
+              body: JSON.stringify({ nick, score: finalScore }),
+            });
+
+            const data = await response.json();
+            alert(data.message);
+
+            await carregarRecorde();
+          } catch (error) {
+            console.error("Erro ao enviar o recorde:", error);
+            alert("There was an error saving the record.");
+          }
+        }
+      }, 500);
+    }
   }
 
   function reiniciarJogo() {
@@ -34,19 +65,20 @@
 </script>
 
 <div class="tela">
-  <h1 class="life">HP:{$vida}</h1>
-
-  <h1 class="score">SCORE:{$score}</h1>
   <Nave />
   <Tiro />
   <Inimigo />
+  <h1 class="life">HP: {$vida}</h1>
+  <h1 class="score">SCORE: {$score}</h1>
+  <h1 class="record">RECORD: {$recorde.nick} - {$recorde.score}</h1>
 </div>
 {#if gameOverStatus}
   <div class="game-over">
     <div class="game-over-content">
       <h1>GAME OVER</h1>
       <p>Score: <strong>{finalScore}</strong></p>
-      <button on:click={reiniciarJogo}>🔄Play Again </button>
+      <p>Records: <strong>{$recorde.nick} - {$recorde.score}</strong></p>
+      <button on:click={reiniciarJogo}>🔄 Play Again</button>
     </div>
   </div>
 {/if}

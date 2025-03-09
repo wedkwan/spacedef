@@ -1,7 +1,7 @@
 .tela {
   display: flex;
-  width: 75vw ;
-  height: 85vh; 
+  width: 75vw;
+  height: 85vh;
   margin: 7% auto;
   position: relative;
   overflow: hidden;
@@ -21,22 +21,21 @@
   }
 }
 .enemies {
-position: absolute;
-top: 30px; 
-width: 100%;
-display: grid;
-flex-direction: column;
-align-items: center;
-gap: 0px; 
+  position: absolute;
+  top: 30px;
+  width: 100%;
+  display: grid;
+  flex-direction: column;
+  align-items: center;
+  gap: 0px;
 }
 
 .tiro {
   position: absolute;
-  background-image:  url('/src/static/images/bullet.gif');
+  background-image: url("/src/static/images/bullet.gif");
   background-color: gray;
- background-size: cover;
- border-radius: 20%;  
-  
+  background-size: cover;
+  border-radius: 20%;
 }
 .life {
   position: absolute;
@@ -56,20 +55,30 @@ gap: 0px;
   font-weight: bold;
   color: white;
 }
+.record {
+   position: absolute;
+  font-family: "Pixelify Sans", serif;
+  top: 10px;
+  right: 50px ;     
+ 
+  font-size: 24px;
+  font-weight: bold;
+  color: white;
+}
 .nave {
-position: absolute;
-width: 85px;
-height: 75px;
+  position: absolute;
+  width: 75px;
+  height: 67px;
 }
 
 .enemy {
-position: absolute;
-width: 86px;
-height: 75px;
+  position: absolute;
+  width:  86px;                    
+  height: 75px;
 }
 
 .enelin {
-position: relative;
+  position: relative;
 }
 .tiro-inimigo {
   position: absolute;
@@ -85,11 +94,12 @@ position: relative;
   pointer-events: none;
 }
 
-
 .game-over {
   position: fixed;
-  top: 0; left: 0;
-  width: 100vw; height: 100vh;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
   background: rgba(0, 0, 0, 0.8);
   display: flex;
   align-items: center;
