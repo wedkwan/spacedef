@@ -6,7 +6,8 @@ import {
   alturaCenario,
   gameOver,
   vida,
-  ctiroinimigo 
+  ctiroinimigo ,
+  pause
 } from "$lib/stores/gstores.js";
 import { tocarSom } from "./audio.js";
 import { get , writable } from "svelte/store";
@@ -14,6 +15,7 @@ import { adicionarExplosao } from "./funcutil.js";
 
 export function dispararInimigos() {
   setInterval(() => {
+    if (get(pause)) return ; 
     if (get(gameOver)) return;
     inimigos.update((inimigosAtuais) => {
       const novosTiros: { x: number; y: number; ativo: boolean }[] = [];
@@ -33,6 +35,7 @@ export function dispararInimigos() {
               y: inimigoEscolhido.y + tamanhoElemento,
               ativo: true,
             });
+             if (get(pause)) return; 
             tocarSom("/src/static/music/laser3.mp3"); // S
           }
         }
@@ -46,6 +49,8 @@ export function dispararInimigos() {
 
 export function moverTirosInimigos() {
   setInterval(() => {
+     if (get(pause)) return;
+     if (get(gameOver)) return;
     tirosInimigos.update((tirosAtuais) => {
       return tirosAtuais
         .map((tiro) => ({

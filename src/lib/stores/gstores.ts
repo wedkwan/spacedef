@@ -1,4 +1,5 @@
-import { writable } from "svelte/store";
+import { moverInimigos } from "$lib/func/moveny.js";
+import { writable  , get} from "svelte/store";
 
 //estado do jogo
 export const score = writable(0);
@@ -12,6 +13,22 @@ export const gameOver = writable(false);
 export function definirGameOver() {
   gameOver.set(true);
 }
+// Pause
+export const pause = writable(false)
+
+    
+export function DefinirPause() {
+  if (get(pause) === false) {
+    pause.set(true);
+  }else{
+    pause.set(false)
+    moverInimigos()
+  }
+}
+
+    
+   
+
 
 //nave
 export const vida = writable(3);

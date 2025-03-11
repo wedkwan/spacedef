@@ -8,6 +8,8 @@ import {
   gameOver,
   jogo,
   definirGameOver,
+  pause
+
 } from "../stores/gstores.js";
 import { get } from "svelte/store";
 
@@ -22,6 +24,7 @@ function verificarGameOver() {
       inimigo.posicoes.forEach((posicao) => {
         if (posicao.y >= alturaCenario - tamanhoElemento) {
           definirGameOver();
+
         }
 
         let colisao =
@@ -37,13 +40,17 @@ function verificarGameOver() {
     });
   });
 }
-
 export function moverInimigos() {
   if (movimentoAtivo) return;
   movimentoAtivo = true;
 
   function atualizarMovimento() {
-    if (get(gameOver)) return; // Para tudo se for Game Over!
+    if (get(pause)) {
+      movimentoAtivo = false; // Permite que moverInimigos() seja chamada após o pause
+      return;
+    }
+
+    if (get(gameOver)) return;
 
     inimigos.update((inimigosAtuais) => {
       let precisaDescer = false;

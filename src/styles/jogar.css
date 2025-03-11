@@ -1,3 +1,9 @@
+body {
+  margin: 0;
+  padding: 0;
+  height: 100vh;
+  position: relative; /* Isso faz o body ser o contexto de posicionamento para elementos fixos */
+}
 .tela {
   display: flex;
   width: 75vw;
@@ -56,11 +62,11 @@
   color: white;
 }
 .record {
-   position: absolute;
+  position: absolute;
   font-family: "Pixelify Sans", serif;
   top: 10px;
-  right: 50px ;     
- 
+  right: 50px;
+
   font-size: 24px;
   font-weight: bold;
   color: white;
@@ -73,7 +79,7 @@
 
 .enemy {
   position: absolute;
-  width:  86px;                    
+  width: 86px;
   height: 75px;
 }
 
@@ -126,4 +132,54 @@ button {
   color: white;
   border-radius: 5px;
   font-family: "Pixelify Sans", serif;
+}
+
+.pause {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: rgba(0, 0, 0, 0.8);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  font-size: 2rem;
+  font-family: "Pixelify Sans", serif;
+}
+.pause-conteiner {
+  background: #222;
+  padding: 2rem;
+  border-radius: 10px;
+  text-align: center;
+}
+
+a.menu-jogar {
+  font-family: "Pixelify Sans", serif;
+  position: absolute;
+  top: 87%;
+  left: 50%;
+  padding: 7px 25px;
+  background: linear-gradient(to bottom, #2b8fbb, #1a5e85);
+width: 70px;
+  border: 6px solid #b8e5eb;
+  text-align: center;
+  text-decoration: none;
+  font-size: 30px;
+  font-weight: bold;
+  color: #ffff;
+  box-shadow: 3px 3px 5px rgba(0, 0, 0, 0.5);
+  transition: transform 0.2s;
+  text-decoration: none;
+  border-radius: 15px;
+  cursor: pointer;
+  z-index: 9999; 
+  transition: background-color 0.3s;
+  transform: translateX(-50%);
+}
+.it a:hover {
+  transform: scale(1.05);
+
+  background: linear-gradient(to bottom, #3ca0d0, #2b6b9e);
 }

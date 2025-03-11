@@ -2,7 +2,7 @@
   import Nave from "$lib/componetes/Player.svelte";
   import Tiro from "$lib/componetes/Tiro.svelte";
   import Inimigo from "$lib/componetes/Enemy.svelte";
-  import { score, gameOver, vida, ctiroinimigo } from "$lib/stores/gstores.js";
+  import { score, gameOver, vida, ctiroinimigo, pause , DefinirPause } from "$lib/stores/gstores.js";
   import { onMount } from "svelte";
   import { get } from "svelte/store";
   import {
@@ -70,8 +70,12 @@
   <Inimigo />
   <h1 class="life">HP: {$vida}</h1>
   <h1 class="score">SCORE: {$score}</h1>
+
   <h1 class="record">RECORD: {$recorde.nick} - {$recorde.score}</h1>
 </div>
+  <a href="/" class="menu-jogar" on:click={DefinirPause}>back</a>
+
+
 {#if gameOverStatus}
   <div class="game-over">
     <div class="game-over-content">
@@ -81,4 +85,15 @@
       <button on:click={reiniciarJogo}>🔄 Play Again</button>
     </div>
   </div>
+{/if}
+{#if $pause}
+<div class="pause">
+  <div class ="pause-conteiner">
+    <h1>pause</h1> 
+    <br />
+     <p>Score: <strong>{finalScore}</strong></p>
+      <p>Records: <strong>{$recorde.nick} - {$recorde.score}</strong></p>
+      <button on:click={DefinirPause}>🚀 Return</button>
+  </div>
+</div>  
 {/if}
