@@ -23,18 +23,22 @@ export function adicionarExplosao(x: number, y: number) {
 }
 
 let ondaatual = 1;
-let numeroLinhas = 1;
-let numeroColunas = 1;
+let numeroLinhas = 2;
+let numeroColunas = 3;
 let contador: number = 1;
 
 const maxLinhas = 5;
-const maxColunas = 5;
-
+const maxColunas = 10;
+let altera = 0 
 export function novaOnda() {
   console.log(novaOnda);
   
-
-  const linhas = Math.min(numeroLinhas + contador, maxLinhas);
+   if (contador % 2 == 0) {
+    altera = contador 
+    console.log(altera)
+   }
+  
+  const linhas = Math.min(numeroLinhas + altera, maxLinhas);
   const colunas = Math.min(numeroColunas + contador, maxColunas);
 
   let novosInimigos = Array(linhas)

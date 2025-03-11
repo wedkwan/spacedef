@@ -140,7 +140,7 @@
   position: absolute;
   height: 45%;
   background: rgba(0, 0, 0, 0.9);
-  width: 520px;
+  width: 800px;
   perspective: 240px;
   perspective-origin: center 15%;
   overflow: hidden;

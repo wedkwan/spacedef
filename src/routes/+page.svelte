@@ -5,7 +5,7 @@
   import { audioEnabled } from "$lib/stores/gstores.js";
 
   onMount(() => {
-    tocarMusica("/src/static/music/jogo.mp3");  // Música da home
+    tocarMusica("/src/static/music/home.mp3");  // Música da home
     paraMusica;
   });
   onDestroy(() => {
@@ -17,7 +17,7 @@
      $audioEnabled ? audioEnabled.set(false) : audioEnabled.set(true);
    // Caso você queira tocar ou parar a música
     if ($audioEnabled) {
-      tocarMusica("/src/static/music/jogo.mp3"); // Coloque o caminho correto do seu arquivo de música
+      tocarMusica("/src/static/music/home.mp3"); // Coloque o caminho correto do seu arquivo de música
     } else {
       paraMusica();
     }
@@ -27,9 +27,10 @@
 <div class="cenario">
   <button class="toggle-music" on:click={toggleAudio}>
     {#if get(audioEnabled)}
-      <h2>lucia</h2>
+    <img src="/src/static/images/somzinho.png" alt="som" class="som" />
     {:else}
-      <h1>vera</h1>
+    <img src="/src/static/images/somzinho.png" alt="som" class="som" />
+
     {/if}
   </button>
   <img src="/src/static/images/jupt2.png" alt="jutp" class="jupt" />
@@ -41,4 +42,4 @@
     <a href="/jogar" id="play">PLAY</a>
     <a href="/sobre" id="about">ABOUT</a>
   </div>
-</div>
+</div> 

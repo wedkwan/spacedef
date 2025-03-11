@@ -57,7 +57,7 @@ export function moverInimigos() {
 
       inimigosAtuais.forEach((inimigo) => {
         inimigo.posicoes.forEach((posicao) => {
-          let novaPosicaoX = posicao.x + velocidadeInimigos * direcao;
+          let novaPosicaoX = posicao.x + velocidadeInimigos* direcao;
           if (
             novaPosicaoX < 0 ||
             novaPosicaoX > larguraCenario - tamanhoElemento

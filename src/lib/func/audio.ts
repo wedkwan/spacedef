@@ -37,9 +37,31 @@ export function paraMusica(): void {
   });
 }
 
+
 export function tocarSom(caminho: string) {
   if (!get(audioEnabled)) return;
   let efeito = new Audio(caminho);
-  efeito.volume = 0.5;
+  efeito.volume = 0.7;
   efeito.play().catch((err) => console.log("Erro ao tocar som:", err));
+}
+
+
+export function tocarMusicajogar(src: string): void {
+  if (!get(audioEnabled)) {
+    // Se o áudio estiver desabilitado, não faz nada
+    return;
+  }
+  music.update((m) => {
+    if (m.audio) {
+      m.audio.pause();
+    }
+
+    const newAudio = new Audio(src);
+    newAudio.loop = true;
+    newAudio.play();
+    newAudio.volume = 0.4
+    
+
+    return { audio: newAudio, currentSrc: src };
+  });
 }

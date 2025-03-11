@@ -14,8 +14,8 @@ let novaOndaTimeout: any = null;
 
 export function disparar() {
   const agora = Date.now();
+  
   let ultimaVezQueTiro = 0;
-
   if (agora - ultimaVezQueTiro > cooldownTempo) {
     jogo.subscribe((state) => {
       tiros.update((tirosAtuais) => [
@@ -81,13 +81,15 @@ export function moverTiros() {
       });
 
       if (inimigosRestantes.length === 0 && !novaOndaTimeout) {
+        ctiroinimigo.update((n) => n * 1.1);
+          
         novaOndaTimeout = setTimeout(() => {
+  
           novaOnda();
           novaOndaTimeout = null;
-          ctiroinimigo.update((n) => n * 1.2);
           
           
-        }, 3);
+        },3);
       }
 
       return inimigosRestantes;

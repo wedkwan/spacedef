@@ -19,7 +19,7 @@ export function dispararInimigos() {
     if (get(gameOver)) return;
     inimigos.update((inimigosAtuais) => {
       const novosTiros: { x: number; y: number; ativo: boolean }[] = [];
-
+       console.log(dispararInimigos)
       // Escolhe alguns inimigos aleatórios para atirar
       inimigosAtuais.forEach((inimigo) => {
         if (Math.random() < get(ctiroinimigo)) {
@@ -44,7 +44,7 @@ export function dispararInimigos() {
       tirosInimigos.update((tiros) => [...tiros, ...novosTiros]); // Adiciona novos tiros
       return inimigosAtuais;
     });
-  }, 1000); // Dispara a cada 1 segundo
+  }, 1500); // Dispara a cada 1 segundo
 }
 
 export function moverTirosInimigos() {
@@ -55,7 +55,7 @@ export function moverTirosInimigos() {
       return tirosAtuais
         .map((tiro) => ({
           ...tiro,
-          y: tiro.y + 18,
+          y: tiro.y + 14,
           ativo: tiro.y < alturaCenario, // Remove os tiros que saem da tela
         }))
         .filter((tiro) => tiro.ativo);

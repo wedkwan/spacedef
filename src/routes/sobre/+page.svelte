@@ -123,6 +123,6 @@
     <p>A / ← - Move left</p>
     <p>D / → - Move right</p>
     <p>Space / x - Shoots</p>
-    <p>Esc - Pause</p>
+    <p>S - Pause</p>
   </div>
 </div>
