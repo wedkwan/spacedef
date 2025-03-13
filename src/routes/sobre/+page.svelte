@@ -43,7 +43,7 @@
     <h2 class="integrantes">Members</h2>
     <br /><br />
     <p><strong>Paulo Fernandes</strong></p>
-    <p><strong>Wedney Kawan</strong></p>
+    <p><strong>Wedney Kawan </strong></p>
     <p><strong>Jean Lucas</strong></p>
     <p><strong>Ryan Carlos</strong></p>
     <p><strong>Davi Guilherme</strong></p>

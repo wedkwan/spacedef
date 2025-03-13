@@ -1,4 +1,5 @@
 <script lang="ts">
+  import Boss from "$lib/componetes/Boss.svelte";
   import Nave from "$lib/componetes/Player.svelte";
   import Tiro from "$lib/componetes/Tiro.svelte";
   import Inimigo from "$lib/componetes/Enemy.svelte";
@@ -89,6 +90,7 @@
   <Nave />
   <Tiro />
   <Inimigo />
+  <Boss />
   <h1 class="life">HP: {$vida}</h1>
   <h1 class="score">SCORE: {$score}</h1>
 
