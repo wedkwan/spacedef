@@ -41,7 +41,7 @@ export function tocarMusicajogar(src: string): void {
     const newAudio = new Audio(src);
     newAudio.loop = true;
     newAudio.play();
-    newAudio.volume =0.1 ;
+    newAudio.volume =0.3 ;
 
 
     return { audio: newAudio, currentSrc: src };
@@ -58,7 +58,7 @@ export function paraMusica(): void {
   });
 }let efeitos: HTMLAudioElement[] = [];
 
-export function tocarSom(caminho: string, volume: number = 0.2) {
+export function tocarSom(caminho: string, volume: number ) {
   if (!get(audioEnabled)) return;
   let efeito = new Audio(caminho);
   efeito.volume = volume; // Ajusta o volume de acordo com o parâmetro

@@ -28,8 +28,10 @@ export function disparar() {
       ]);
     })();
 
-    tocarSom("/src/static/music/laser.mp3" , 0.6);
+    tocarSom("/src/static/music/laser.mp3" , 0.12);
+
     ultimaVezQueTiro = agora;
+
   }
 }
 

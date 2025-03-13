@@ -6,7 +6,7 @@
     score,
     gameOver,
     vida,
-    ctiroinimigo,
+    
     pause,
     DefinirPause,
   } from "$lib/stores/gstores.js";
@@ -92,7 +92,7 @@
   <h1 class="life">HP: {$vida}</h1>
   <h1 class="score">SCORE: {$score}</h1>
 
-  <h1 class="record">RECORD: {$recorde.nick} - {$recorde.score}</h1>
+  <h1 class="record">RECORD: {$recorde.nick} : {$recorde.score}</h1>
 </div>
 <a href="/" class="menu-jogar" on:click={DefinirPause}>back</a>
 
@@ -101,7 +101,7 @@
     <div class="game-over-content">
       <h1>GAME OVER</h1>
       <p>Score: <strong>{finalScore}</strong></p>
-      <p>Records: <strong>{$recorde.nick} - {$recorde.score}</strong></p>
+      <p>Records: <strong>{$recorde.nick} : {$recorde.score}</strong></p>
       <button on:click={reiniciarJogo}>🔄 Play Again</button>
     </div>
   </div>

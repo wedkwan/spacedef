@@ -15,7 +15,7 @@
       } else if (event.key === "x" || event.key === " ") {
         disparar();
         moverTiros();
-      } else if (event.key === "s" || event.key === "S") {
+      } else if (event.key === "p" || event.key === "P") {
         DefinirPause();
         console.log(DefinirPause);
       }

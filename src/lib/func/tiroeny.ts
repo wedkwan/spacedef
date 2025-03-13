@@ -37,7 +37,7 @@ export function dispararInimigos() {
               ativo: true,
             });
              if (get(pause)) return; 
-            tocarSom("/src/static/music/laser3.mp3" , 0.2); // S
+            tocarSom("/src/static/music/laser3.mp3" , 0.1); // S
           }
         }
       });

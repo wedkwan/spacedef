@@ -51,6 +51,8 @@
 
   <div class="conteudo {$abaAtiva === 'mostrar_IA' ? 'ativo' : ''}">
     <button class="fechar" on:click={fecharAba}><X /></button>
+    <h3>Details</h3>
+    <br /><br />
     <p>
       This game was developed using the Svelte framework with TypeScript, HTML
       and CSS, using a componentization system to ensure the project's
@@ -123,6 +125,6 @@
     <p>A / ← - Move left</p>
     <p>D / → - Move right</p>
     <p>Space / x - Shoots</p>
-    <p>S - Pause</p>
+    <p>P - Pause</p>
   </div>
 </div>
