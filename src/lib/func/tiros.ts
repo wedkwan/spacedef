@@ -11,11 +11,11 @@ import { adicionarExplosao, novaOnda } from "./funcutil.js";
 import { tocarSom } from "./audio.js";
 
 let novaOndaTimeout: any = null;
-
+let ultimaVezQueTiro = 0;
 export function disparar() {
   const agora = Date.now();
   
-  let ultimaVezQueTiro = 0;
+  
   if (agora - ultimaVezQueTiro > cooldownTempo) {
     jogo.subscribe((state) => {
       tiros.update((tirosAtuais) => [
@@ -28,7 +28,7 @@ export function disparar() {
       ]);
     })();
 
-    tocarSom("/src/static/music/laser.mp3");
+    tocarSom("/src/static/music/laser.mp3" , 0.6);
     ultimaVezQueTiro = agora;
   }
 }

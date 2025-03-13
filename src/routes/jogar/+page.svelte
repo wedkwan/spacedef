@@ -2,14 +2,26 @@
   import Nave from "$lib/componetes/Player.svelte";
   import Tiro from "$lib/componetes/Tiro.svelte";
   import Inimigo from "$lib/componetes/Enemy.svelte";
-  import { score, gameOver, vida, ctiroinimigo, pause , DefinirPause } from "$lib/stores/gstores.js";
-  import { onMount } from "svelte";
+  import {
+    score,
+    gameOver,
+    vida,
+    ctiroinimigo,
+    pause,
+    DefinirPause,
+  } from "$lib/stores/gstores.js";
+  import { onMount, onDestroy } from "svelte";
   import { get } from "svelte/store";
   import {
     recorde,
     carregarRecorde,
     type Recorde,
   } from "$lib/stores/recordStore.js";
+  import {
+    tocarMusicajogar,
+    paraMusica,
+    pararTodosOsSons,
+  } from "$lib/func/audio.js";
 
   let gameOverStatus = false; // Controle para exibir tela "Game Over"
   let finalScore = 0;
@@ -19,6 +31,15 @@
   onMount(async () => {
     await carregarRecorde();
     recordeData = get(recorde);
+  });
+
+  onMount(() => {
+    tocarMusicajogar("/src/static/music/jogo.mp3"); // Música da home
+    paraMusica;
+  });
+  onDestroy(() => {
+    paraMusica();
+    pararTodosOsSons(); // Para a música ao sair da página
   });
 
   // Observa mudanças no gameOver
@@ -73,8 +94,7 @@
 
   <h1 class="record">RECORD: {$recorde.nick} - {$recorde.score}</h1>
 </div>
-  <a href="/" class="menu-jogar" on:click={DefinirPause}>back</a>
-
+<a href="/" class="menu-jogar" on:click={DefinirPause}>back</a>
 
 {#if gameOverStatus}
   <div class="game-over">
@@ -87,13 +107,14 @@
   </div>
 {/if}
 {#if $pause}
-<div class="pause">
-  <div class ="pause-conteiner">
-    <h1>pause</h1> 
-    <br />
-     <p>Score: <strong>{finalScore}</strong></p>
+  <div class="pause">
+    <div class="pause-conteiner">
+      <h1>pause</h1>
+      <br />
+      <p>Score: <strong>{$score}</strong></p>
       <p>Records: <strong>{$recorde.nick} - {$recorde.score}</strong></p>
       <button on:click={DefinirPause}>🚀 Return</button>
+      <button on:click={reiniciarJogo}>🔄 Play Again</button>
+    </div>
   </div>
-</div>  
 {/if}

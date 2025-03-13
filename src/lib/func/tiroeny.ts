@@ -9,7 +9,7 @@ import {
   ctiroinimigo ,
   pause
 } from "$lib/stores/gstores.js";
-import { tocarSom } from "./audio.js";
+import { paraMusica, tocarSom } from "./audio.js";
 import { get , writable } from "svelte/store";
 import { adicionarExplosao } from "./funcutil.js";
 
@@ -18,8 +18,9 @@ export function dispararInimigos() {
     if (get(pause)) return ; 
     if (get(gameOver)) return;
     inimigos.update((inimigosAtuais) => {
+      
       const novosTiros: { x: number; y: number; ativo: boolean }[] = [];
-       console.log(dispararInimigos)
+       
       // Escolhe alguns inimigos aleatórios para atirar
       inimigosAtuais.forEach((inimigo) => {
         if (Math.random() < get(ctiroinimigo)) {
@@ -36,7 +37,7 @@ export function dispararInimigos() {
               ativo: true,
             });
              if (get(pause)) return; 
-            tocarSom("/src/static/music/laser3.mp3"); // S
+            tocarSom("/src/static/music/laser3.mp3" , 0.2); // S
           }
         }
       });
@@ -44,7 +45,7 @@ export function dispararInimigos() {
       tirosInimigos.update((tiros) => [...tiros, ...novosTiros]); // Adiciona novos tiros
       return inimigosAtuais;
     });
-  }, 1500); // Dispara a cada 1 segundo
+  }, 1700); // Dispara a cada 1 segundo
 }
 
 export function moverTirosInimigos() {
@@ -93,8 +94,11 @@ export function verificarColisoes() {
                 viva: false,
               },
             }));
+            paraMusica()
             adicionarExplosao(naveX, naveY);
             setTimeout(() => gameOver.set(true), 530); //ms
+            tocarSom("/src/static/music/Explosion.mp3" , 1 ); 
+
           }
           return false;
         }
