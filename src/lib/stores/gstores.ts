@@ -1,14 +1,22 @@
 import { moverInimigos } from "$lib/func/moveny.js";
-import { writable  , get} from "svelte/store";
+import { writable, get } from "svelte/store";
 
 //estado do jogo
 export const score = writable(0);
-export const larguraCenario = 1411;  //1000
-export const alturaCenario = 940;    //632
+export const larguraCenario = 1411; //1000
+export const alturaCenario = 940; //632
 export const tamanhoElemento = 80;
 export const audioEnabled = writable(true);
 
-export const boss = writable();
+export const boss = writable({
+  x: 0,
+  y: 0,
+  width: 0,
+  height: 0,
+  lifi: 0,
+
+  // Adicione outras propriedades necessárias para o boss
+});
 
 //game-over
 export const gameOver = writable(false);
@@ -16,24 +24,19 @@ export function definirGameOver() {
   gameOver.set(true);
 }
 // Pause
-export const pause = writable(false)
+export const pause = writable(false);
 
-    
 export function DefinirPause() {
   if (get(pause) === false) {
     pause.set(true);
-  }else{
-    pause.set(false)
-    moverInimigos()
+  } else {
+    pause.set(false);
+    moverInimigos();
   }
 }
 
-    
-   
-
-
 //nave
-export const vida = writable(3);
+export const vida = writable(999);
 export const velocidadeNave = 22;
 export const jogo = writable({
   nave: {
@@ -48,12 +51,12 @@ export const velocidadeInimigos = 20;
 
 export const intervaloMovimento = 450;
 
-
 export const inimigos = writable(
   Array(1)
     .fill(null)
     .map((_, linha) => ({
       tipo: linha < 2 ? 2 : 3,
+      lado: "esquerda",
       posicoes: Array(1)
         .fill(null)
         .map((_, coluna) => ({ x: coluna * 70, y: linha * 70 })),
@@ -67,7 +70,9 @@ export const tirosInimigos = writable<
 >([]);
 export const ctiroinimigo = writable(0.25);
 
-
-
+// Outras stores...
+export const tirosBoss = writable<{ x: number; y: number; ativo: boolean }[]>(
+  []
+);
 
 export const tiros = writable<{ x: number; y: number; ativo: boolean }[]>([]);

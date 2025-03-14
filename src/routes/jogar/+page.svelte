@@ -7,9 +7,9 @@
     score,
     gameOver,
     vida,
-    
     pause,
     DefinirPause,
+    
   } from "$lib/stores/gstores.js";
   import { onMount, onDestroy } from "svelte";
   import { get } from "svelte/store";

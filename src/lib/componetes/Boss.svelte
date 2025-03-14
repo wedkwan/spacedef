@@ -1,37 +1,61 @@
 <script lang="ts">
-  import { boss } from "../stores/gstores.js";
-  import { onMount } from "svelte";
+  import { boss, tirosBoss } from "../stores/gstores.js";
+  import { onMount, onDestroy } from "svelte";
+  import {moverInimigosDireita ,  moverBoss , moverInimigosEsquerda } from "$lib/func/moveny.js";
+  import { moverTirosBoss } from "$lib/func/tiroeny.js";
 
-  let bossData: any;
-
-  const unsubscribe = boss.subscribe((data) => {
-    bossData = data;
-  });
+  let intervaloMovimento: number | null = null;
+  let intervaloTiros: number | null = null;
 
   onMount(() => {
-    return () => {
-      unsubscribe();
-    };
+    moverTirosBoss();
+    moverBoss();
+    moverInimigosDireita()
+    moverInimigosEsquerda()
+  });
+
+  onDestroy(() => {
+    if (intervaloMovimento) clearInterval(intervaloMovimento);
+    if (intervaloTiros) clearInterval(intervaloTiros);
   });
 </script>
 
 <style>
   .boss {
     position: absolute;
-    background-color: red; /* Estilo inicial do boss */
+    background-image: url(/src/static/images/Boss.gif)
+      ;
+      background-size: cover;/* Estilo inicial do boss */
     border: 2px solid black;
     z-index: 1;
   }
+
+  .tiro-boss {
+    position: absolute;
+    width: 5px;
+    height: 10px;
+    background-color: yellow; /* Estilo dos tiros do boss */
+  }
 </style>
 
-{#if $bossData}
+{#if $boss}
   <div
     class="boss"
     style="
-      left: {$bossData.x}px;
-      top: {$bossData.y}px;
-      width: {$bossData.width}px;
-      height: {$bossData.height}px;
+      left: {$boss.x}px;
+      top: {$boss.y}px;
+      width: {$boss.width}px;
+      height: {$boss.height}px;
     "
   ></div>
 {/if}
+
+{#each $tirosBoss as tiro}
+  <div
+    class="tiro-boss"
+    style="
+      left: {tiro.x}px;
+      top: {tiro.y}px;
+    "
+  ></div>
+{/each}

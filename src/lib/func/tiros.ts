@@ -5,17 +5,19 @@ import {
   inimigos,
   score,
   tiros,
-  ctiroinimigo
+  ctiroinimigo,
+  boss,
 } from "$lib/stores/gstores.js";
 import { adicionarExplosao, novaOnda } from "./funcutil.js";
 import { tocarSom } from "./audio.js";
+import { get } from "svelte/store";
 
 let novaOndaTimeout: any = null;
 let ultimaVezQueTiro = 0;
+
 export function disparar() {
   const agora = Date.now();
-  
-  
+
   if (agora - ultimaVezQueTiro > cooldownTempo) {
     jogo.subscribe((state) => {
       tiros.update((tirosAtuais) => [
@@ -28,10 +30,9 @@ export function disparar() {
       ]);
     })();
 
-    tocarSom("/src/static/music/laser.mp3" , 0.12);
+    tocarSom("/src/static/music/laser.mp3", 0.12);
 
     ultimaVezQueTiro = agora;
-
   }
 }
 
@@ -49,6 +50,7 @@ export function moverTiros() {
       tirosAtualizados = tirosAtualizados.filter((tiro) => {
         let tiroAtivo = true;
 
+        // Verifica colisão com inimigos
         for (let i = 0; i < inimigosRestantes.length; i++) {
           let inimigo = inimigosRestantes[i];
 
@@ -79,19 +81,42 @@ export function moverTiros() {
           if (!tiroAtivo) break; // Para de checar se o tiro atingiu alguém
         }
 
+        // Verifica colisão com o boss
+        const bossAtual = get(boss);
+        if (bossAtual.lifi > 0) {
+          let colidiuComBoss =
+            tiro.x < bossAtual.x + bossAtual.width &&
+            tiro.x + 5 > bossAtual.x &&
+            tiro.y < bossAtual.y + bossAtual.height &&
+            tiro.y + 10 > bossAtual.y;
+
+          if (colidiuComBoss) {
+            score.update((n) => n + 50); // Atualiza a pontuação
+            adicionarExplosao(tiro.x, tiro.y);
+
+            boss.update((b) => ({
+              ...b,
+              lifi: b.lifi - 10, // Reduz a vida do boss
+            }));
+
+            if (bossAtual.lifi <= 0) {
+              console.log("Boss derrotado!");
+            }
+
+            tiroAtivo = false; // Tiro para imediatamente
+          }
+        }
+
         return tiroAtivo; // Se for falso, o tiro será removido
       });
 
       if (inimigosRestantes.length === 0 && !novaOndaTimeout) {
         ctiroinimigo.update((n) => n * 1.1);
-          
+
         novaOndaTimeout = setTimeout(() => {
-  
           novaOnda();
           novaOndaTimeout = null;
-          
-          
-        },3);
+        }, 3);
       }
 
       return inimigosRestantes;
