@@ -14,6 +14,7 @@ export const boss = writable({
   width: 0,
   height: 0,
   lifi: 0,
+  vida: true
 
   // Adicione outras propriedades necessárias para o boss
 });
@@ -83,5 +84,8 @@ export const ctiroinimigo = writable(0.25);
 export const tirosBoss = writable<{ x: number; y: number; ativo: boolean }[]>(
   []
 );
+
+export const tirosInimigosBoss =writable<{ x: number; y: number; ativo: boolean }[]>([]);
+
 
 export const tiros = writable<{ x: number; y: number; ativo: boolean }[]>([]);

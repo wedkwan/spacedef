@@ -14,6 +14,11 @@ import {
 import { paraMusica, tocarSom } from "./audio.js";
 import { get, writable } from "svelte/store";
 import { adicionarExplosao } from "./funcutil.js";
+import {
+  tirosInimigosBoss,
+  inimigos_boss,
+  definirGameOver,
+} from "../stores/gstores.js";
 
 export function dispararInimigos() {
   setInterval(() => {
@@ -128,7 +133,7 @@ export function dispararBoss() {
       ativo: true,
     },
   ];
-   
+
   tirosBoss.update((tiros) => [...tiros, ...novosTiros]); // Adiciona novos tiros
   tocarSom("/src/static/music/laser3.mp3", 0.1); // Som do tiro do boss
 }
@@ -191,4 +196,90 @@ function verificarColisoesTirosBoss() {
 
     return novosTiros;
   });
+}
+
+export function moverTirosInimigosBoss() {
+  setInterval(() => {
+    tirosInimigosBoss.update((tiros) => {
+      return tiros
+        .map((tiro) => ({
+          ...tiro,
+          y: tiro.y + 3, // Velocidade do tiro
+        }))
+        .filter((tiro) => tiro.y < alturaCenario);
+    });
+  }, 50); // Intervalo de atualização dos tiros
+}
+
+export function verificarColisoesBoss() {
+  setInterval(() => {
+    if (get(pause) || get(gameOver)) return;
+
+    const nave = get(jogo).nave;
+    tirosInimigosBoss.update((tiros) => {
+      return tiros.filter((tiro) => {
+        const colidiu =
+          tiro.x < nave.x + tamanhoElemento &&
+          tiro.x + 5 > nave.x &&
+          tiro.y < nave.y + tamanhoElemento &&
+          tiro.y + 10 > nave.y;
+
+        if (colidiu) {
+          vida.update((v) => v - 1);
+
+          if (get(vida) <= 0) {
+            jogo.update((state) => ({
+              ...state,
+              nave: {
+                ...state.nave,
+                viva: false,
+              },
+            }));
+            paraMusica();
+            adicionarExplosao(nave.x, nave.y);
+            setTimeout(() => gameOver.set(true), 530); //ms
+            tocarSom("/src/static/music/Explosion.mp3", 1);
+          }
+        }
+
+        return !colidiu;
+      });
+    });
+  }, 50); // Intervalo de verificação de colisões
+}
+
+export function dispararInimigosBoss() {
+  setInterval(() => {
+    if (get(pause) || get(gameOver)) return;
+    if ((get(boss).vida = false)) return; 
+    
+    inimigos_boss.update((inimigosAtuais) => {
+      const novosTiros: { x: number; y: number; ativo: boolean }[] = [];
+
+      // Escolhe alguns inimigos aleatórios para atirar
+      inimigosAtuais.forEach((inimigo) => {
+        if (Math.random() < get(ctiroinimigo)) {
+          // 10% de chance de atirar por ciclo
+          const inimigoEscolhido =
+            inimigo.posicoes[
+              Math.floor(Math.random() * inimigo.posicoes.length)
+            ];
+
+          if (inimigoEscolhido) {
+            novosTiros.push({
+              x: inimigoEscolhido.x + tamanhoElemento / 2 - 2,
+              y: inimigoEscolhido.y + tamanhoElemento,
+              ativo: true,
+            });
+            if (get(pause)) return;
+            if (get(boss).vida = false) return 
+            tocarSom("/src/static/music/laser3.mp3", 0.1); // Som do tiro
+          }
+        }
+      });
+
+      tirosInimigosBoss.update((tiros) => [...tiros, ...novosTiros]); // Adiciona novos tiros
+      return inimigosAtuais;
+    });
+  }, 1700); // Dispara a cada 1.7 segundos
 }

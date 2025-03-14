@@ -9,7 +9,6 @@
     vida,
     pause,
     DefinirPause,
-    
   } from "$lib/stores/gstores.js";
   import { onMount, onDestroy } from "svelte";
   import { get } from "svelte/store";
@@ -23,6 +22,7 @@
     paraMusica,
     pararTodosOsSons,
   } from "$lib/func/audio.js";
+  import EnymyBoss from "$lib/componetes/EnymyBoss.svelte";
 
   let gameOverStatus = false; // Controle para exibir tela "Game Over"
   let finalScore = 0;
@@ -91,6 +91,7 @@
   <Tiro />
   <Inimigo />
   <Boss />
+  <EnymyBoss />
   <h1 class="life">HP: {$vida}</h1>
   <h1 class="score">SCORE: {$score}</h1>
 

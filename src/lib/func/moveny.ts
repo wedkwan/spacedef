@@ -1,7 +1,7 @@
 import { get } from "svelte/store";
 import {
   inimigos,
-  inimigos_boss ,
+  inimigos_boss,
   larguraCenario,
   tamanhoElemento,
   intervaloMovimento,
@@ -16,6 +16,8 @@ import {
 
 let direcao = 1;
 let movimentoAtivo = false; // Evita múltiplas execuções
+let movimentoEsquerdaAtivo = false;
+let movimentoDireitaAtivo = false;
 
 function verificarGameOver() {
   const nave = get(jogo).nave;
@@ -129,13 +131,17 @@ export function moverBoss() {
   atualizarMovimento();
 }
 
-export function moverInimigosEsquerda() {
+export function moverInimigosEsquerdaBoss() {
+  if (movimentoEsquerdaAtivo) return;
+  movimentoEsquerdaAtivo = true;
+
   let direcao = 1; // 1 para direita, -1 para esquerda
-  let linhasDescidas = 0;
-  const maxLinhasDescidas = 4;
 
   function atualizarMovimento() {
-    if (get(pause) || get(gameOver)) return;
+    if (get(pause) || get(gameOver)) {
+      movimentoEsquerdaAtivo = false;
+      return;
+    }
 
     inimigos_boss.update((inimigosAtuais) => {
       let precisaDescer = false;
@@ -149,7 +155,7 @@ export function moverInimigosEsquerda() {
               novaPosicaoX > larguraCenario / 2 - tamanhoElemento
             ) {
               precisaDescer = true;
-              console.log("Inimigo à esquerda atingiu a borda do cenário");
+              direcao *= -1; // Inverte a direção ao atingir a borda
             }
 
             // Verifica colisão com o boss
@@ -162,7 +168,7 @@ export function moverInimigosEsquerda() {
               posicao.y + tamanhoElemento > bossAtual.y
             ) {
               precisaDescer = true;
-              console.log("Inimigo à esquerda colidiu com o boss");
+              direcao *= -1; // Inverte a direção ao colidir com o boss
             }
 
             // Verifica colisão com o player
@@ -180,9 +186,7 @@ export function moverInimigosEsquerda() {
         }
       });
 
-      if (precisaDescer && linhasDescidas < maxLinhasDescidas) {
-        direcao *= -1;
-        linhasDescidas++;
+      if (precisaDescer) {
         inimigosAtuais = inimigosAtuais.map((inimigo) => {
           if (inimigo.lado === "esquerda") {
             return {
@@ -220,13 +224,17 @@ export function moverInimigosEsquerda() {
   atualizarMovimento();
 }
 
-export function moverInimigosDireita() {
+export function moverInimigosDireitaBoss() {
+  if (movimentoDireitaAtivo) return;
+  movimentoDireitaAtivo = true;
+
   let direcao = -1; // -1 para esquerda, 1 para direita
-  let linhasDescidas = 0;
-  const maxLinhasDescidas = 4;
 
   function atualizarMovimento() {
-    if (get(pause) || get(gameOver)) return;
+    if (get(pause) || get(gameOver)) {
+      movimentoDireitaAtivo = false;
+      return;
+    }
 
     inimigos_boss.update((inimigosAtuais) => {
       let precisaDescer = false;
@@ -240,7 +248,7 @@ export function moverInimigosDireita() {
               novaPosicaoX > larguraCenario - tamanhoElemento
             ) {
               precisaDescer = true;
-              console.log("Inimigo à direita atingiu a borda do cenário");
+              direcao *= -1; // Inverte a direção ao atingir a borda
             }
 
             // Verifica colisão com o boss
@@ -253,7 +261,7 @@ export function moverInimigosDireita() {
               posicao.y + tamanhoElemento > bossAtual.y
             ) {
               precisaDescer = true;
-              console.log("Inimigo à direita colidiu com o boss");
+              direcao *= -1; // Inverte a direção ao colidir com o boss
             }
 
             // Verifica colisão com o player
@@ -271,9 +279,7 @@ export function moverInimigosDireita() {
         }
       });
 
-      if (precisaDescer && linhasDescidas < maxLinhasDescidas) {
-        direcao *= -1;
-        linhasDescidas++;
+      if (precisaDescer) {
         inimigosAtuais = inimigosAtuais.map((inimigo) => {
           if (inimigo.lado === "direita") {
             return {

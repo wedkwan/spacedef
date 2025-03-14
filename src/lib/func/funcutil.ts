@@ -11,8 +11,8 @@ import { dispararBoss } from "./tiroeny.js";
 import {
   moverBoss,
   moverInimigos,
-  moverInimigosDireita,
-  moverInimigosEsquerda,
+  moverInimigosDireitaBoss,
+  moverInimigosEsquerdaBoss,
 } from "./moveny.js";
 
 // Verifica se há colisão com os limites do cenário
@@ -88,10 +88,11 @@ export function novaOnda() {
 export function spawnBoss() {
   const bossData = {
     x: larguraCenario / 2 - 50, // Posição inicial do boss
-    y: 50, // Posição inicial do boss
+    y: 25, // Posição inicial do boss
     width: 300, // Largura do boss
     height: 300, // Altura do boss
-    lifi: 15, // Vida do boss
+    lifi: 15,
+    vida :true  // Vida do boss
     // Adicione outras propriedades necessárias para o boss
   };
 
@@ -127,7 +128,7 @@ export function spawnBoss() {
         })),
     }));
 
-  inimigos.set([...inimigosEsquerda, ...inimigosDireita]);
+  inimigos_boss.set([...inimigosEsquerda, ...inimigosDireita]);
   console.log("Inimigos criados à esquerda e à direita do boss");
 
   // Lógica para fazer o boss atirar pelos lados
@@ -140,6 +141,6 @@ export function spawnBoss() {
   console.log("moverBoss chamado");
 
   // Lógica para mover os inimigos criados quando o boss aparece
-  moverInimigosEsquerda();
-  moverInimigosDireita();
+  moverInimigosEsquerdaBoss();
+  moverInimigosDireitaBoss();
 }

@@ -1,7 +1,11 @@
 <script lang="ts">
   import { boss, tirosBoss } from "../stores/gstores.js";
   import { onMount, onDestroy } from "svelte";
-  import {moverInimigosDireita ,  moverBoss , moverInimigosEsquerda } from "$lib/func/moveny.js";
+  import {
+    moverInimigosDireitaBoss,
+    moverBoss,
+    moverInimigosEsquerdaBoss,
+  } from "$lib/func/moveny.js";
   import { moverTirosBoss } from "$lib/func/tiroeny.js";
 
   let intervaloMovimento: number | null = null;
@@ -10,8 +14,8 @@
   onMount(() => {
     moverTirosBoss();
     moverBoss();
-    moverInimigosDireita()
-    moverInimigosEsquerda()
+    moverInimigosDireitaBoss();
+    moverInimigosEsquerdaBoss();
   });
 
   onDestroy(() => {
@@ -20,34 +24,19 @@
   });
 </script>
 
-<style>
-  .boss {
-    position: absolute;
-    background-image: url(/src/static/images/Boss.gif)
-      ;
-      background-size: cover;/* Estilo inicial do boss */
-    border: 2px solid black;
-    z-index: 1;
-  }
-
-  .tiro-boss {
-    position: absolute;
-    width: 5px;
-    height: 10px;
-    background-color: yellow; /* Estilo dos tiros do boss */
-  }
-</style>
-
 {#if $boss}
-  <div
+  <img
+    src="src\static\images\Boss.gif"
+    alt=""
     class="boss"
     style="
+    position: absolute ; 
       left: {$boss.x}px;
       top: {$boss.y}px;
       width: {$boss.width}px;
       height: {$boss.height}px;
     "
-  ></div>
+  />
 {/if}
 
 {#each $tirosBoss as tiro}
@@ -59,3 +48,18 @@
     "
   ></div>
 {/each}
+
+<style>
+  .boss {
+    position: absolute;
+    border: 1px solid rgb(245, 239, 239);
+    z-index: 1;
+  }
+
+  .tiro-boss {
+    position: absolute;
+    width: 5px;
+    height: 10px;
+    background-color: yellow; /* Estilo dos tiros do boss */
+  }
+</style>
