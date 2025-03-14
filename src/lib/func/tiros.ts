@@ -96,8 +96,11 @@ export function moverTiros() {
 
             boss.update((b) => ({
               ...b,
-              lifi: b.lifi - 10, // Reduz a vida do boss
+              lifi: b.lifi - 10, // Reduz a vida d
+              // o boss
+             
             }));
+             
 
             if (bossAtual.lifi <= 0) {
               console.log("Boss derrotado!");

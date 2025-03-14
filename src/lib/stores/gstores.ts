@@ -50,8 +50,17 @@ export const jogo = writable({
 export const velocidadeInimigos = 20;
 
 export const intervaloMovimento = 450;
-
 export const inimigos = writable(
+  Array(2)
+    .fill(null)
+    .map((_, linha) => ({
+      tipo: linha < 2 ? 2 : 3,
+      posicoes: Array(3)
+        .fill(null)
+        .map((_, coluna) => ({ x: coluna * 70, y: linha * 70 })),
+    }))
+);
+export const inimigos_boss = writable(
   Array(1)
     .fill(null)
     .map((_, linha) => ({

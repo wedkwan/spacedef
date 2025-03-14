@@ -1,6 +1,7 @@
 import {
   larguraCenario,
   tamanhoElemento,
+  inimigos_boss,
   inimigos,
   gameOver,
   boss,
@@ -52,16 +53,16 @@ export function novaOnda() {
   const linhas = Math.min(numeroLinhas + altera, maxLinhas);
   const colunas = Math.min(numeroColunas + contador, maxColunas);
 
-  let novosInimigos = Array(linhas)
+  let novosInimigos = Array(linhas);
+  novosInimigos = Array(linhas)
     .fill(null)
     .map((_, linha) => ({
       tipo: linha < 2 ? 2 : 3,
-      lado: linha % 2 === 0 ? "esquerda" : "direita", // Alterna entre esquerda e direita
       posicoes: Array(colunas)
         .fill(null)
         .map((_, coluna) => ({
-          x: linha % 2 === 0 ? coluna * 70 : larguraCenario - (coluna + 1) * 70,
-          y: 50, // Mesma linha que o boss
+          x: coluna * 70,
+          y: linha * 70,
         })),
     }));
 
@@ -88,9 +89,9 @@ export function spawnBoss() {
   const bossData = {
     x: larguraCenario / 2 - 50, // Posição inicial do boss
     y: 50, // Posição inicial do boss
-    width: 100, // Largura do boss
-    height: 100, // Altura do boss
-    lifi: 100, // Vida do boss
+    width: 300, // Largura do boss
+    height: 300, // Altura do boss
+    lifi: 15, // Vida do boss
     // Adicione outras propriedades necessárias para o boss
   };
 

@@ -1,6 +1,7 @@
 import { get } from "svelte/store";
 import {
   inimigos,
+  inimigos_boss ,
   larguraCenario,
   tamanhoElemento,
   intervaloMovimento,
@@ -136,7 +137,7 @@ export function moverInimigosEsquerda() {
   function atualizarMovimento() {
     if (get(pause) || get(gameOver)) return;
 
-    inimigos.update((inimigosAtuais) => {
+    inimigos_boss.update((inimigosAtuais) => {
       let precisaDescer = false;
 
       inimigosAtuais.forEach((inimigo) => {
@@ -227,7 +228,7 @@ export function moverInimigosDireita() {
   function atualizarMovimento() {
     if (get(pause) || get(gameOver)) return;
 
-    inimigos.update((inimigosAtuais) => {
+    inimigos_boss.update((inimigosAtuais) => {
       let precisaDescer = false;
 
       inimigosAtuais.forEach((inimigo) => {
