@@ -1,5 +1,7 @@
 import { writable } from "svelte/store";
-const apiUrl = import.meta.env.VITE_API_URL;
+const apiUrl = import.meta.env.VITE_API_URL || "http://localhost:3000";
+
+console.log("API URL usada pelo front:", apiUrl); // Teste
 
 export type Recorde = {
   nick: string;
@@ -10,7 +12,8 @@ export const recorde = writable<Recorde>({ nick: "Desconhecido", score: 0 });
 
 export async function carregarRecorde() {
   try {
-    const response = await fetch(`https://defspace.up.railway.app/records`);
+    const response = await fetch(`${apiUrl}/records`);
+
     if (!response.ok) {
       throw new Error("Erro ao buscar recorde.");
     }
