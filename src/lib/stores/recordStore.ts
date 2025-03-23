@@ -1,4 +1,5 @@
 import { writable } from "svelte/store";
+const apiUrl = import.meta.env.VITE_API_URL;
 
 export type Recorde = {
   nick: string;
@@ -9,7 +10,7 @@ export const recorde = writable<Recorde>({ nick: "Desconhecido", score: 0 });
 
 export async function carregarRecorde() {
   try {
-    const response = await fetch("http://localhost:3000/records");
+    const response = await fetch(`${apiUrl}/records`);
     if (!response.ok) {
       throw new Error("Erro ao buscar recorde.");
     }
