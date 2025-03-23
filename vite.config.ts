@@ -16,6 +16,6 @@ export default defineConfig({
     host: "0.0.0.0",
     port: 8081,
     strictPort: true,
-    allowedHosts: [".railway.app"], // Permite acessos do Railway
+    allowedHosts: ["defspace.up.railway.app"], // Permite acessos do Railway
   },
 });

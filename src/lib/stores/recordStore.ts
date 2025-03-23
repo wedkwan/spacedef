@@ -10,7 +10,7 @@ export const recorde = writable<Recorde>({ nick: "Desconhecido", score: 0 });
 
 export async function carregarRecorde() {
   try {
-    const response = await fetch(`${apiUrl}/records`);
+    const response = await fetch(`https://defspace.up.railway.app/records`);
     if (!response.ok) {
       throw new Error("Erro ao buscar recorde.");
     }
