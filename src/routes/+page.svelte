@@ -1,6 +1,6 @@
 <script lang="ts">
-  import { tocarMusica, paraMusica } from "$lib/func/audio.js";
-  import { audioEnabled } from "$lib/stores/gstores.js";
+  import { tocarMusica, paraMusica } from "../lib/func/audio.js";
+  import { audioEnabled } from "../lib/stores/gstores.js";
 
   function toggleAudio() {
     audioEnabled.update((enabled) => {

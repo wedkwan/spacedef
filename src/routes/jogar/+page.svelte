@@ -1,7 +1,7 @@
 <script lang="ts">
-  import Nave from "$lib/componetes/Player.svelte";
-  import Tiro from "$lib/componetes/Tiro.svelte";
-  import Inimigo from "$lib/componetes/Enemy.svelte";
+  import Nave from "../lib/componetes/Player.svelte";
+  import Tiro from "../lib/componetes/Tiro.svelte";
+  import Inimigo from "../lib/componetes/Enemy.svelte";
   import {
     score,
     gameOver,
@@ -53,13 +53,15 @@
     }
   });
 
+  const  Apiuse = import.meta.env.VITE_API_URL || "http://localhost:3000";
+
   $: if (gameOverStatus) {
     if (finalScore > recordeData.score) {
       setTimeout(async () => {
         let nick = prompt("Congratulations! New record! Enter your name:");
         if (nick) {
           try {
-            const response = await fetch("http://localhost:3000/recorde", {
+            const response = await fetch (`${Apiuse}/records`, {
               method: "POST",
               headers: { "Content-Type": "application/json" },
               body: JSON.stringify({ nick, score: finalScore }),

@@ -1,4 +1,4 @@
-import { moverInimigos } from "$lib/func/moveny.js";
+import { moverInimigos } from "../func/moveny.js";
 import { writable  , get} from "svelte/store";
 
 //estado do jogo
