@@ -2,13 +2,15 @@ import express from "express";
 import cors from "cors";
 import fs from "fs";
 import csvParser from "csv-parser";
-
+import "dotenv/config";
 const app = express();
-const PORT = 3000;
+const PORT = process.env.PORT || 3000;
+
 const RECORDS_FILE = "records.csv";
 
 app.use(cors());
 app.use(express.json());
+app.use(express.static("dist"));
 
 // Função para ler o recorde do CSV
 function lerRecorde() {
