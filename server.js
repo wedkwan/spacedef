@@ -5,7 +5,6 @@ import csvParser from "csv-parser";
 import "dotenv/config";
 const app = express();
 const PORT = process.env.PORT || 3000;
-const apiUrl = import.meta.env.VITE_API_URL;
 
 const RECORDS_FILE = "records.csv";
 
@@ -65,5 +64,5 @@ app.post("/recorde", async (req, res) => {
 });
 
 app.listen(PORT, () => {
-  console.log(`Servidor rodando em ${apiUrl}:${PORT}`);
+  console.log(`Servidor rodando em http://localhost:${PORT}`);
 });
