@@ -11,7 +11,7 @@
   margin: 7% auto;
   background-size: 100% auto;
   background-repeat: repeat-y;
-  background-image: url(/src/static/images/fundo.gif);
+  background-image: url(/images/fundo.gif);
   border: 1px solid #b8e5eb;
   border-radius: 20px;
   box-shadow: 0 8px 20px rgba(0, 0, 0, 0.5);
@@ -192,7 +192,7 @@
 .planeta {
   width: 68%;
   height: 100%;
-  background: url("/src/static/images/terra1.png") no-repeat center center;
+  background: url("/images/terra1.png") no-repeat center center;
   background-size: cover;
   position: absolute;
   z-index: 0;

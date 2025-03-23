@@ -15,7 +15,7 @@
   position: relative;
   background-repeat: repeat-y;
   background-color: black;
-  background-image: url(/src/static/images/fundo.gif);
+  background-image: url(/images/fundo.gif);
   background-size: 100% auto;
   border: 1px solid #b8e5eb;
   border-radius: 20px;

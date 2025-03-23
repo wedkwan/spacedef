@@ -35,7 +35,7 @@
     ?
   </button>
 
-  <img src="/src/static/images/logif.png" alt="" class="logo" />
+  <img src="\images\logif.png" alt="" class="logo" />
   <a class="menu" href="/">BACK</a>
 
   <div class="conteudo {$abaAtiva === 'integrantes' ? 'ativo' : ''}">

@@ -6,21 +6,20 @@ import {
   alturaCenario,
   gameOver,
   vida,
-  ctiroinimigo ,
-  pause
+  ctiroinimigo,
+  pause,
 } from "../stores/gstores.js";
 import { paraMusica, tocarSom } from "./audio.js";
-import { get , writable } from "svelte/store";
+import { get, writable } from "svelte/store";
 import { adicionarExplosao } from "./funcutil.js";
 
 export function dispararInimigos() {
   setInterval(() => {
-    if (get(pause)) return ; 
+    if (get(pause)) return;
     if (get(gameOver)) return;
     inimigos.update((inimigosAtuais) => {
-      
       const novosTiros: { x: number; y: number; ativo: boolean }[] = [];
-       
+
       // Escolhe alguns inimigos aleatórios para atirar
       inimigosAtuais.forEach((inimigo) => {
         if (Math.random() < get(ctiroinimigo)) {
@@ -36,8 +35,8 @@ export function dispararInimigos() {
               y: inimigoEscolhido.y + tamanhoElemento,
               ativo: true,
             });
-             if (get(pause)) return; 
-            tocarSom("/src/static/music/laser3.mp3" , 0.1); // S
+            if (get(pause)) return;
+            tocarSom("/music/laser3.mp3", 0.1); // S
           }
         }
       });
@@ -50,8 +49,8 @@ export function dispararInimigos() {
 
 export function moverTirosInimigos() {
   setInterval(() => {
-     if (get(pause)) return;
-     if (get(gameOver)) return;
+    if (get(pause)) return;
+    if (get(gameOver)) return;
     tirosInimigos.update((tirosAtuais) => {
       return tirosAtuais
         .map((tiro) => ({
@@ -94,11 +93,10 @@ export function verificarColisoes() {
                 viva: false,
               },
             }));
-            paraMusica()
+            paraMusica();
             adicionarExplosao(naveX, naveY);
             setTimeout(() => gameOver.set(true), 530); //ms
-            tocarSom("/src/static/music/Explosion.mp3" , 1 ); 
-
+            tocarSom("/music/Explosion.mp3", 1);
           }
           return false;
         }

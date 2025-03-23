@@ -1,6 +1,6 @@
 import { writable } from "svelte/store";
 import { get } from "svelte/store";
-import { audioEnabled } from "$lib/stores/gstores.js";
+import { audioEnabled } from "../stores/gstores.js";
 
 interface MusicStore {
   audio: HTMLAudioElement | null;

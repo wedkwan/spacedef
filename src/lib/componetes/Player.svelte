@@ -33,7 +33,7 @@
 
 {#if $jogo.nave.viva}
   <img
-    src="src\static\images\navep1.gif"
+    src="\images\navep1.gif"
     class="nave"
     alt="nave "
     style="left: {$jogo.nave.x}px; top: {$jogo.nave.y}px;"

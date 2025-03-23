@@ -27,7 +27,7 @@
     <div class="enelin">
       {#each inimigo.posicoes as posicao}
         <img
-          src="src/static/images/enemy{inimigo.tipo}.gif"
+          src="/images/enemy{inimigo.tipo}.gif"
           alt="Inimigo"
           class="enemy"
           style="left: {posicao.x}px; top: {posicao.y}px;"
@@ -46,7 +46,7 @@
 
 {#each $explosoes as explosao}
   <img
-    src="src/static/images/kabum.gif"
+    src="/images/kabum.gif"
     alt="Explosão"
     class="explosao"
     style="left: {explosao.x}px; top: {explosao.y}px;"

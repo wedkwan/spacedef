@@ -34,7 +34,7 @@
   });
 
   onMount(() => {
-    tocarMusicajogar("/src/static/music/jogo.mp3"); // Música da home
+    tocarMusicajogar("/music/jogo.mp3"); // Música da home
     paraMusica;
   });
   onDestroy(() => {
