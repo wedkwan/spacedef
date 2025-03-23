@@ -1,7 +1,7 @@
 <script lang="ts">
-  import Nave from "../lib/componetes/Player.svelte";
-  import Tiro from "../lib/componetes/Tiro.svelte";
-  import Inimigo from "../lib/componetes/Enemy.svelte";
+  import Nave from "$lib/componetes/Player.svelte";
+  import Tiro from "$lib/componetes/Tiro.svelte";
+  import Inimigo from "$lib/componetes/Enemy.svelte";
   import {
     score,
     gameOver,
