@@ -9,12 +9,12 @@ export default defineConfig({
   },
   server: {
     host: "0.0.0.0",
-    port: 8080, // Porta do front-end
+    port: 8081, // Porta do front-end
     strictPort: true,
   },
   preview: {
     host: "0.0.0.0",
-    port: 8080,
+    port: 8081,
     strictPort: true,
     allowedHosts: [".railway.app"], // Permite acessos do Railway
   },
