@@ -6,7 +6,7 @@ import {
   score,
   tiros,
   ctiroinimigo
-} from "$lib/stores/gstores.js";
+} from "../stores/gstores.js";
 import { adicionarExplosao, novaOnda } from "./funcutil.js";
 import { tocarSom } from "./audio.js";
 

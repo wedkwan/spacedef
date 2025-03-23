@@ -1,3 +1,4 @@
+
 import { defineConfig } from "vite";
 import { sveltekit } from "@sveltejs/kit/vite";
 
@@ -7,9 +8,14 @@ export default defineConfig({
     extensions: [".mjs", ".js", ".ts", ".svelte"],
   },
   server: {
-    host: "0.0.0.0", // Permite acesso externo
-    port: 8080, // Usa a porta esperada pelo Railway
+    host: "0.0.0.0",
+    port: 8080, // Porta do front-end
     strictPort: true,
-    allowedHosts: ["invigorating-vitality-production.up.railway.app"], // Adiciona seu domínio
+  },
+  preview: {
+    host: "0.0.0.0",
+    port: 8080,
+    strictPort: true,
+    allowedHosts: [".railway.app"], // Permite acessos do Railway
   },
 });

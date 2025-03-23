@@ -8,7 +8,7 @@ import {
   vida,
   ctiroinimigo ,
   pause
-} from "$lib/stores/gstores.js";
+} from "../stores/gstores.js";
 import { paraMusica, tocarSom } from "./audio.js";
 import { get , writable } from "svelte/store";
 import { adicionarExplosao } from "./funcutil.js";
