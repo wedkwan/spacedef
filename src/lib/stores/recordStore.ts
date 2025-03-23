@@ -12,7 +12,7 @@ export const recorde = writable<Recorde>({ nick: "Desconhecido", score: 0 });
 
 export async function carregarRecorde() {
   try {
-   const response = await fetch(`${import.meta.env.VITE_API_URL}/records`);
+   const response = await fetch(`${apiUrl}/records`);
 
     if (!response.ok) {
       throw new Error("Erro ao buscar recorde.");

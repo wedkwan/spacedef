@@ -10,9 +10,10 @@ const RECORDS_FILE = "records.csv";
 
 app.use(
   cors({
-    origin: "https://defspace.up.railway.app", // Adicione o domínio correto aqui
-  })
-);
+  origin: "https://defspace.up.railway.app", // URL do frontend
+  methods: "GET,POST,PUT,DELETE",
+  allowedHeaders: "Content-Type,Authorization"
+}));
  
 app.use(express.json());
 app.use(express.static("dist"));
