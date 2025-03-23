@@ -10,11 +10,11 @@ const RECORDS_FILE = "records.csv";
 
 app.use(
   cors({
-  origin: "https://defspace.up.railway.app", // URL do frontend
-  methods: "GET,POST,PUT,DELETE",
-  allowedHeaders: "Content-Type,Authorization"
-}));
- 
+    origin: ["https://defspace.up.railway.app", "http://localhost:5173"],
+    methods: "GET,POST,PUT,DELETE",
+    allowedHeaders: "Content-Type,Authorization",
+  })
+);
 app.use(express.json());
 app.use(express.static("dist"));
 
@@ -51,7 +51,7 @@ app.get("/records", async (req, res) => {
 });
 
 // Rota para salvar um novo recorde
-app.post("/recorde", async (req, res) => {
+app.post("/records", async (req, res) => {
   const { nick, score } = req.body;
 
   try {
