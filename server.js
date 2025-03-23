@@ -8,7 +8,12 @@ const PORT = process.env.PORT || 3000;
 
 const RECORDS_FILE = "records.csv";
 
-app.use(cors());
+app.use(
+  cors({
+    origin: "https://defspace.up.railway.app", // Adicione o domínio correto aqui
+  })
+);
+ 
 app.use(express.json());
 app.use(express.static("dist"));
 
@@ -64,5 +69,5 @@ app.post("/recorde", async (req, res) => {
 });
 
 app.listen(PORT, () => {
-  console.log(`Servidor rodando em http://localhost:${PORT}`); // port 
+  console.log(`Servidor rodando na porta ${PORT}`); // port 
 });
